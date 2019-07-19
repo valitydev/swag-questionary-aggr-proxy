@@ -1,0 +1,9 @@
+type: object
+allOf:
+  - $ref: '#/definitions/DaDataResponse'
+  - type: object
+    properties:
+      suggestions:
+        type: array
+        items:
+          $ref: '#/definitions/OkvedContent'

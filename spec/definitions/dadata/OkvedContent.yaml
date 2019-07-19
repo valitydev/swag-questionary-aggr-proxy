@@ -1,0 +1,15 @@
+type: object
+properties:
+  value:
+    description: Значение одной строкой
+    type: string
+  idx:
+    description: Индекс (раздел + код)
+    type: string
+  section:
+    description: Код раздела
+    type: string
+  code:
+    type: string
+  name:
+    type: string

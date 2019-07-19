@@ -1,0 +1,16 @@
+type: object
+properties:
+  settlementFiasId:
+    description: Код ФИАС населенного пункта
+    type: string
+  settlementKladrId:
+    description: Код КЛАДР населенного пункта
+    type: string
+  settlementWithType:
+    type: string
+  settlementType:
+    type: string
+  settlementTypeFull:
+    type: string
+  settlement:
+    type: string

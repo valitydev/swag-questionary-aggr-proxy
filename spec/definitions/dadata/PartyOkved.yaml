@@ -1,0 +1,15 @@
+type: object
+description: Коды ОКВЭД дополнительных видов деятельности
+properties:
+  main:
+    description: Основной или нет
+    type: boolean
+  type:
+    description: Версия справочника ОКВЭД
+    type: string
+  code:
+    description: Код по справочнику
+    type: string
+  name:
+    description: Наименование по справочнику
+    type: string

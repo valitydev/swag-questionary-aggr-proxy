@@ -1,0 +1,17 @@
+type: object
+properties:
+  regionFiasId:
+    description: Код ФИАС региона
+    type: string
+  regionKladrId:
+    description: Код КЛАДР региона
+    type: string
+  regionWithType:
+    type: string
+  regionType:
+    description: Тип региона (сокращенный)
+    type: string
+  regionTypeFull:
+    type: string
+  region:
+    type: string

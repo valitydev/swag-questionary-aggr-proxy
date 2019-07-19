@@ -1,0 +1,15 @@
+type: object
+description: Гражданство ИП
+properties:
+  numeric:
+    description: Числовой код страны по ОКСМ
+    type: string
+  aplha3:
+    description: Трехбуквенный код страны по ОКСМ
+    type: string
+  countryFullName:
+    description: Полное наименование страны
+    type: string
+  countryShortName:
+    description: Краткое наименование страны
+    type: string

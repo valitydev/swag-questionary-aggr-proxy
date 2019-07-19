@@ -1,0 +1,36 @@
+type: object
+properties:
+  series:
+    description: Серия докумена
+    type: string
+  number:
+    description: Номер документа
+    type: string
+  issueDate:
+    description: Дата выдачи
+    type: string
+  issueAuthority:
+    description: Название выдавшего органа
+    type: string
+  suspendDate:
+    description: Дата приостановки
+    type: string
+  suspendAuthority:
+    description: Название приостановившего органа
+    type: string
+  validFrom:
+    description: Дата начала действия
+    type: string
+  validTo:
+    description: Дата окончания действия
+    type: string
+  activities:
+    description: Перечень лицензируемых видов деятельности
+    type: array
+    items:
+      type: string
+  addresses:
+    description: Перечень адресов, по которым действует лицензия
+    type: array
+    items:
+      type: string

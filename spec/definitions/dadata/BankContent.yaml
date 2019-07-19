@@ -1,0 +1,34 @@
+type: object
+properties:
+  value:
+    description: Наименование организации одной строкой
+    type: string
+  unrestrictedValue:
+    description: Наименование компании одной строкой (полное)
+    type: string
+  opf:
+    $ref: '#/definitions/Opf'
+  payment:
+    $ref: '#/definitions/Payment'
+  bic:
+    description: Банковский идентификационный код (БИК) ЦБ РФ
+    type: string
+  swift:
+    description: Банковский идентификационный код в системе SWIFT
+    type: string
+  okpo:
+    type: string
+  correspondentAccount:
+    description: Корреспондентский счет в ЦБ РФ
+    type: string
+  registrationNumber:
+    description: Регистрационный номер в ЦБ РФ
+    type: string
+  rkc:
+    description: Ссылка на РКЦ. Структура идентична структуре объекта банка
+  address:
+    $ref: '#/definitions/DaDataAddress'
+  phone:
+    type: string
+  status:
+    $ref: '#/definitions/DaDataState'

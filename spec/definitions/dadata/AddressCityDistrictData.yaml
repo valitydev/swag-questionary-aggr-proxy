@@ -1,0 +1,15 @@
+type: object
+properties:
+  cityDistrictFiasId:
+    type: string
+  cityDistrictKladrId:
+    type: string
+  cityDistrictWithType:
+    type: string
+  cityDistrictType:
+    description: Тип района города (сокращенный)
+    type: string
+  cityDistrictTypeFull:
+    type: string
+  cityDistrict:
+    type: string

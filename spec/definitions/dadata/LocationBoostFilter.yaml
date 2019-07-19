@@ -1,0 +1,5 @@
+type: object
+description: Приоритеты города при ранжировании
+properties:
+  kladrId:
+    type: string

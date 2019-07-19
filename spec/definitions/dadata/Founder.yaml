@@ -1,0 +1,19 @@
+type: object
+description: Учредитель компании
+properties:
+  ogrn:
+    description: ОГРН учредителя (для юрлиц)
+    type: string
+  inn:
+    description: ИНН учредителя
+    type: string
+  name:
+    description: Наименование учредителя (для юрлиц)
+    type: string
+  fio:
+    description: ФИО учредителя для физлиц
+    type: string
+  hid:
+    $ref: '#/definitions/DaDataHID'
+  type:
+    $ref: '#/definitions/FounderType'

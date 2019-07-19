@@ -1,0 +1,8 @@
+type: object
+description: Тело запроса в DaData
+discriminator: daDataRequestType
+required:
+  - daDataRequestType
+properties:
+  daDataRequestType:
+    type: string

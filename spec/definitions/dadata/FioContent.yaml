@@ -1,0 +1,22 @@
+type: object
+properties:
+  value:
+    description: ФИО одной строкой
+    type: string
+  unrestrictedValue:
+    description: ФИО одной строкой
+    type: string
+  surname:
+    description: Фамилия
+    type: string
+  name:
+    description: Имя
+    type: string
+  patronymic:
+    description: Отчество
+    type: string
+  gender:
+    $ref: '#/definitions/Gender'
+  gc:
+    description: Код качества
+    type: integer

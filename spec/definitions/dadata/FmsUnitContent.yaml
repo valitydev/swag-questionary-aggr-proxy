@@ -1,0 +1,24 @@
+type: object
+properties:
+  value:
+    description: Значение одной строкой
+    type: string
+  unrestrictedValue:
+    description: Значение одной строкой
+    type: string
+  code:
+    description: Код подразделения
+    type: string
+  name:
+    description: Название подразделения в творительном падеже («кем выдан?»)
+    type: string
+  regionCode:
+    description: Код региона (2 цифры)
+    type: string
+  type:
+    description: Вид подразделения (1 цифра)
+        0 — подразделение ФМС
+        1 — ГУВД или МВД региона
+        2 — УВД или ОВД района или города
+        3 — отделение полиции
+    type: string

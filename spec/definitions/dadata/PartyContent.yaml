@@ -1,0 +1,72 @@
+type: object
+properties:
+  value:
+    description: Наименование компании одной строкой
+    type: string
+  unrestrictedValue:
+    description: Наименование компании одной строкой (полное)
+    type: string
+  kpp:
+    description: КПП
+    type: string
+  management:
+    $ref: '#/definitions/Management'
+  branchType:
+    $ref: '#/definitions/BranchType'
+  branchCount:
+    description: Кол-во филиалов
+    type: integer
+  hid:
+    $ref: '#/definitions/DaDataHID'
+  state:
+    $ref: '#/definitions/DaDataState'
+  opf:
+    $ref: '#/definitions/Opf'
+  name:
+    $ref: '#/definitions/OrgName'
+  inn:
+    type: string
+  ogrn:
+    description: ОГРН
+    type: string
+  ogrnDate:
+    description: Дата выдачи ОГРН
+    type: string
+  orgType:
+    $ref: '#/definitions/OrgType'
+  okpo:
+    description: Код ОКПО
+    type: string
+  okved:
+    description: Код ОКВЭД
+    type: string
+  okvedType:
+    description: Версия справочника ОКВЭД (2001 или 2014)
+    type: string
+  address:
+    description: Адрес
+    $ref: '#/definitions/DaDataAddress'
+  okveds:
+    type: array
+    items:
+      $ref: '#/definitions/PartyOkved'
+  authorities:
+    $ref: '#/definitions/PartyAuthorities'
+  citizenship:
+    $ref: '#/definitions/CitizenshipIP'
+  founders:
+    type: array
+    items:
+      $ref: '#/definitions/Founder'
+  managers:
+    type: array
+    items:
+      $ref: '#/definitions/Manager'
+  capital:
+    $ref: '#/definitions/PartyCapital'
+  documents:
+    $ref: '#/definitions/PartyDocuments'
+  licenses:
+    type: array
+    items:
+      $ref: '#/definitions/DaDataLicense'

@@ -1,0 +1,5 @@
+type: object
+description: Ограничение по региону
+properties:
+  kladrId:
+    type: string

@@ -1,0 +1,13 @@
+type: object
+properties:
+  actualityDate:
+    description: Дата актуальности сведений
+    type: string
+  registratonDate:
+    description: Дата регистрации
+    type: string
+  liquidationDate:
+    description: Дата ликвидации
+    type: string
+  status:
+    $ref: '#/definitions/OrgStatus'

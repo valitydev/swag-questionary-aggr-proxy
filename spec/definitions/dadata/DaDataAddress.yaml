@@ -1,0 +1,90 @@
+type: object
+properties:
+  value:
+    description: Адрес одной строкой
+    type: string
+  unrestrictedValue:
+    description: Адрес одной строкой
+    type: string
+  postalCode:
+    description: Индекс
+    type: string
+  contry:
+    type: string
+  federalDistrict:
+    description: Федеальный округ
+    type: string
+  region:
+    $ref: '#/definitions/AddressRegionData'
+  area:
+    $ref: '#/definitions/AddressAreaData'
+  city:
+    $ref: '#/definitions/AddressCityData'
+  cityDistrict:
+    $ref: '#/definitions/AddressCityDistrictData'
+  settlement:
+    $ref: '#/definitions/AddressSettlementData'
+  street:
+    $ref: '#/definitions/AddressStreetData'
+  house:
+    $ref: '#/definitions/AddressHouseData'
+  block:
+    $ref: '#/definitions/AddressBlockData'
+  flatData:
+    $ref: '#/definitions/AddressFlatData'
+  postalBox:
+    type: string
+  fiasId:
+    type: string
+  fiasLevel:
+    type: integer
+  kladrId:
+    type: string
+  geonameId:
+    type: string
+  capitalMarker:
+    type: integer
+  okato:
+    type: string
+  oktmo:
+    type: string
+  taxOffice:
+    type: string
+  taxOfficeLegal:
+    type: string
+  source:
+    type: string
+  historyValues:
+    type: array
+    items:
+      type: string
+  geoLat:
+    description: Координаты (широта)
+    type: string
+  geoLon:
+    description: Координаты (долгота)
+    type: string
+  gcGeo:
+    description: Код точности координат
+    type: integer
+  fiasCode:
+    description: Иерархический код адреса в ФИАС
+    type: string
+  fiasActualityState:
+    description: Признак актуальности адреса в ФИАС
+    type: integer
+  beltwayHit:
+    description: Внутри кольцевой
+    type: string
+  beltwayDistance:
+    description: Расстояние от кольцевой в километрах
+    type: string
+  squareMeterPrice:
+    type: string
+  timezone:
+    type: string
+  metroList:
+    type: array
+    items:
+      type: string
+

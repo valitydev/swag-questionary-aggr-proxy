@@ -1,0 +1,15 @@
+type: object
+properties:
+  houseFiasId:
+    type: string
+  houseKladrId:
+    type: string
+  houseType:
+    description: Тип дома (сокращенный)
+    type: string
+  houseTypeFull:
+    description: Тип дома
+    type: string
+  house:
+    description: Дом
+    type: string

@@ -1,0 +1,14 @@
+type: object
+properties:
+  streetFiasId:
+    type: string
+  streetKladrId:
+    type: string
+  streetWithType:
+    type: string
+  streetType:
+    type: string
+  streetTypeFull:
+    type: string
+  street:
+    type: string

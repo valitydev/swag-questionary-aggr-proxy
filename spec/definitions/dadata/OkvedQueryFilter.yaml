@@ -1,0 +1,5 @@
+type: object
+properties:
+  section:
+    description: Код раздела
+    type: string

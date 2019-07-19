@@ -1,0 +1,11 @@
+type: object
+description: Сведения о налоговой, ПФР и ФСС
+properties:
+  type:
+    type: string
+  code:
+    type: string
+  name:
+    type: string
+  address:
+    type: string

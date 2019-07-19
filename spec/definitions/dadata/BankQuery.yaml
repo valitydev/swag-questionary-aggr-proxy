@@ -1,0 +1,13 @@
+type: object
+allOf:
+  - $ref: '#/definitions/DaDataRequest'
+  - type: object
+    properties:
+      query:
+        type: string
+      count:
+        type: integer
+      status:
+        $ref: '#/definitions/OrgStatus'
+      type:
+        $ref: '#/definitions/OrgType'

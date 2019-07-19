@@ -1,0 +1,22 @@
+type: object
+description: Руководство компании
+properties:
+  ogrn:
+    description: ОГРН руководителя (для юрлиц)
+    type: string
+  inn:
+    description: ИНН руководителя
+    type: string
+  name:
+    description: Наименования руководителя (для юрлиц)
+    type: string
+  fio:
+    description: ФИО учредителя (для физлиц)
+    type: string
+  post:
+    description: Должность руководителя (для физлиц)
+    type: string
+  hid:
+    $ref: '#/definitions/DaDataHID'
+  type:
+    $ref: '#/definitions/ManagerType'

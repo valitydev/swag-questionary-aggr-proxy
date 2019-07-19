@@ -1,0 +1,9 @@
+type: object
+description: Руководитель компании
+properties:
+  name:
+    description: ФИО руководителя
+    type: string
+  post:
+    description: Должность руководителя
+    type: string

@@ -1,0 +1,9 @@
+type: object
+description: Уставной капитал компании
+properties:
+  type:
+    description: Тип капитала
+    type: string
+  value:
+    description: Размер капитала
+    type: string

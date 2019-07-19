@@ -1,0 +1,12 @@
+type: object
+description: Документы
+properties:
+  ftsRegistration:
+    description: Свидетельство о регистрации в налоговой
+    $ref: '#/definitions/IFNCRegistration'
+  pfRegistration:
+    description: Свидетельство о регистрации в пенсионном фонде
+    $ref: '#/definitions/IFNCRegistration'
+  sifRegistration:
+    description: Свидетельсво о регистрации в Фонде страхования
+    $ref: '#/definitions/IFNCRegistration'

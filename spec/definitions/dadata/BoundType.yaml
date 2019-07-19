@@ -1,0 +1,8 @@
+type: string
+enum:
+  - Region
+  - Area
+  - City
+  - Settlement
+  - Street
+  - House

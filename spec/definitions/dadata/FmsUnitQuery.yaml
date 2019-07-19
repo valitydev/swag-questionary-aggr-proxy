@@ -1,0 +1,11 @@
+type: object
+allOf:
+  - $ref: '#/definitions/DaDataRequest'
+  - type: object
+    properties:
+      query:
+        type: string
+      queryType:
+        $ref: '#/definitions/QueryType'
+      filters:
+        $ref: '#/definitions/FmsUnitQueryFilter'

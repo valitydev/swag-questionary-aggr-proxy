@@ -1,0 +1,18 @@
+type: object
+description: ИФНС регистрации
+properties:
+  type:
+    description: Тип документа
+    type: string
+  series:
+    description: Серия документа
+    type: string
+  number:
+    description: Номер документа
+    type: string
+  issueDate:
+    description: Дата выдачи
+    type: string
+  issueAuthority:
+    description: Код подразделения
+    type: string

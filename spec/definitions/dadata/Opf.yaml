@@ -1,0 +1,15 @@
+type: object
+description: Организационно-правовая форма
+properties:
+  code:
+    description: Код ОКОПФ
+    type: string
+  fullName:
+    description: Полное название ОПФ
+    type: string
+  shortName:
+    description: Краткое навание ОПФ
+    type: string
+  type:
+    description: версия справочника ОКОПФ (99, 2012 или 2014)
+    type: string

@@ -1,0 +1,44 @@
+get:
+  tags:
+    - DaData
+  operationId: requestDaData
+  parameters:
+    - $ref: '#/parameters/requestID'
+    - name: Authorization
+      in: header
+      required: true
+      type: string
+      format: string
+    - name: daDataParams
+      description: Запрос в DaData
+      in: body
+      required: true
+      schema:
+        $ref: '#/definitions/DaDataParams'
+  responses:
+    '201':
+      description: Ответ на запрос в DaData
+      schema:
+        $ref: '#/definitions/DaDataResponse'
+    '404':
+      $ref: '#/responses/NotFound'
+    '401':
+      $ref: '#/responses/Unauthorized'
+    '400':
+      description: Ошибочные данные
+      schema:
+        type: object
+        required:
+          - code
+          - message
+        properties:
+          code:
+            description: |
+              [Код ошибки](#tag/Error-Codes)
+            type: string
+            enum:
+              - daDataRequestException
+          message:
+            description: Человекочитаемое описание ошибки
+            type: string
+

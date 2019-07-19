@@ -1,0 +1,10 @@
+type: object
+properties:
+  blockType:
+    description: Тип корпуса/строения (сокращенный)
+    type: string
+  blockTypeFull:
+    type: string
+  block:
+    description: Корпус/строение
+    type: string

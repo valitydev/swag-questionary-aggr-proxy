@@ -1,0 +1,14 @@
+type: object
+properties:
+  flatType:
+    description: Тип квартиры (сокращенный)
+    type: string
+  flatTypeFull:
+    type: string
+  flat:
+    description: Квартира
+    type: string
+  flatArea:
+    description: Площадь квартиры
+  flatPrice:
+    description: Рыночная стоимость квартиры

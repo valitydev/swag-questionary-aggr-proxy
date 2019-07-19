@@ -1,0 +1,18 @@
+type: object
+properties:
+  cityFiasId:
+    type: string
+  cityKladrId:
+    type: string
+  cityWithType:
+    type: string
+  cityType:
+    description: Тип города (сокращенный)
+    type: string
+  cityTypeFull:
+    type: string
+  city:
+    type: string
+  cityArea:
+    description: Административный округ
+    type: string

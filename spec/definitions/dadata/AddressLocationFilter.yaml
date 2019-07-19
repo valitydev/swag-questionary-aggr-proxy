@@ -1,0 +1,18 @@
+type: object
+properties:
+  kladrId:
+    type: string
+  cityFiasId:
+    type: string
+  areaFiasId:
+    type: string
+  regionFiasId:
+    type: string
+  settlementFiasId:
+    type: string
+  streetFiasId:
+    type: string
+  region:
+    type: string
+  city:
+    type: string

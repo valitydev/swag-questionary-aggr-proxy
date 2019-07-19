@@ -1,0 +1,15 @@
+type: object
+description: Сведения о налоговой, ПФР и ФСС
+properties:
+  ftsRegistration:
+    description: ИФНС регистрации
+    $ref: '#/definitions/Authorities'
+  ftsReport:
+    description: ИФНС отчетности
+    $ref: '#/definitions/Authorities'
+  pf:
+    description: Отделение Пенсионного фонда
+    $ref: '#/definitions/Authorities'
+  sif:
+    description: Отделение Фонда соц. страхования
+    $ref: '#/definitions/Authorities'

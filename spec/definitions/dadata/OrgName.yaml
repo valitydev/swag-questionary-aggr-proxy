@@ -1,0 +1,18 @@
+type: object
+description: Наименование организации
+properties:
+  fullName:
+    description: Полное наименование
+    type: string
+  fullWithOpf:
+    description: Полное наименование с ОПФ
+    type: string
+  latin:
+    description: Наименование на латинице
+    type: string
+  shortName:
+    description: Краткое наименование
+    type: string
+  shortWithOpf:
+    description: Краткое наименование с ОПФ
+    type: string

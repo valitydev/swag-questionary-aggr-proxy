@@ -1,0 +1,26 @@
+type: object
+allOf:
+  - $ref: '#/definitions/DaDataRequest'
+  - type: object
+    properties:
+      query:
+        description: Запрос для которого нужно получить подсказки
+        type: string
+      count:
+        description: Количество возвращаемых подсказок
+        type: integer
+      locations:
+        description: Ограничение области поиска
+        type: array
+        items:
+          $ref: '#/definitions/AddressLocationFilter'
+      locationsBoost:
+        type: array
+        items:
+          $ref: '#/definitions/LocationBoostFilter'
+      fromBound:
+        $ref: '#/definitions/BoundType'
+      toBound:
+        $ref: '#/definitions/BoundType'
+      restrictValue:
+        type: boolean

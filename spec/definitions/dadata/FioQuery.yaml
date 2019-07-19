@@ -1,0 +1,15 @@
+type: object
+allOf:
+  - $ref: '#/definitions/DaDataRequest'
+  - type: object
+    properties:
+      query:
+        type: string
+      count:
+        type: integer
+      parts:
+        type: array
+        items:
+          type: string
+      gender:
+        $ref: '#/definitions/Gender'

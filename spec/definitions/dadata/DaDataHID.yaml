@@ -1,0 +1,5 @@
+type: object
+properties:
+  hid:
+    description: Уникальный идентификатор в DaData
+    type: string
