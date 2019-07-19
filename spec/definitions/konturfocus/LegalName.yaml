@@ -1,0 +1,11 @@
+type: object
+description: Наименование юридического лица
+properties:
+  shortName:
+    description: Краткое наименование организации
+    type: string
+  fullName:
+    description: Полное наименование организации
+    type: string
+  date:
+    type: string

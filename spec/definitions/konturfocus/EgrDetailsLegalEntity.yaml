@@ -1,0 +1,51 @@
+type: object
+allOf:
+  - $ref: '#/definitions/EgrDetailsContractor'
+  - type: object
+    properties:
+      okpo:
+        type: string
+      pfrRegNumber:
+        type: string
+      fssRegNumber:
+        type: string
+      fomsRegNumber:
+        type: string
+      activities:
+        $ref: '#/definitions/Activity'
+      regInfo:
+        $ref: '#/definitions/RegInfo'
+      nalogRegBody:
+        $ref: '#/definitions/NalogRegBody'
+      regBody:
+        $ref: '#/definitions/RegBody'
+      shareHolders:
+        $ref: '#/definitions/ShareHolders'
+      statedCapital:
+        $ref: '#/definitions/StatedCapital'
+      foundersFl:
+        type: array
+        items:
+          $ref: '#/definitions/FounderFl'
+      foundersUl:
+        type: array
+        items:
+          $ref: '#/definitions/FounderUl'
+      foundersForeign:
+        type: array
+        items:
+          $ref: '#/definitions/FounderForeign'
+      predecessor:
+        type: array
+        items:
+          $ref: '#/definitions/Predecessor'
+      successor:
+        type: array
+        items:
+          $ref: '#/definitions/Successor'
+      egrRecords:
+        type: array
+        items:
+          $ref: '#/definitions/EgrRecord'
+      history:
+        $ref: '#/definitions/EgrDetailHistory'

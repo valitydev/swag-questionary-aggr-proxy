@@ -1,0 +1,7 @@
+type: object
+description: Документы, представленные при внесении записи
+properties:
+  name:
+    type: string
+  date:
+    type: string

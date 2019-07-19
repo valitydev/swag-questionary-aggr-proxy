@@ -1,0 +1,33 @@
+type: object
+properties:
+  officialNum:
+    description: Номер лицензии
+    type: string
+  issuerNamer:
+    description: Название органа, выдавшего лицензию
+    type: string
+  date:
+    description: Дата лицензии
+    type: string
+  dateStart:
+    description: Дата начала действия лицензии
+    type: string
+  dateEnd:
+    description: Дата окончания действия лицензии
+    type: string
+  statusDescription:
+    description: Строковое описание статуса
+    type: string
+  activity:
+    description: Описание вида деятельности
+    type: string
+  services:
+    description: Описание видов работ/услуг
+    type: array
+    items:
+      type: string
+  addresses:
+    description: Места действия лицензии (массив неформализированных строк)
+    type: array
+    items:
+      type: string

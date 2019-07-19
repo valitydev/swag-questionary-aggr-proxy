@@ -1,0 +1,30 @@
+type: object
+allOf:
+  - $ref: '#/definitions/ReqContractor'
+  - type: object
+    properties:
+      fio:
+        type: string
+      okpo:
+        type: string
+      okato:
+        type: string
+      okfs:
+        type: string
+      okogu:
+        type: string
+      okopf:
+        type: string
+      opf:
+        description: Наименование организационно-правовой формы
+        type: string
+      oktmo:
+        type: string
+      registrationDate:
+        description: Дата образования
+        type: string
+      dissolutionDate:
+        description: Дата прекращения деятельности
+        type: string
+      statusDetail:
+        $ref: '#/definitions/PrivateEntityStatusDetail'

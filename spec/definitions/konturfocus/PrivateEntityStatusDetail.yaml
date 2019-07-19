@@ -1,0 +1,10 @@
+type: object
+properties:
+  status:
+    description: Неформализованное описание статуса
+    type: string
+  dissolved:
+    description: Недействующий
+    type: boolean
+  date:
+    type: string

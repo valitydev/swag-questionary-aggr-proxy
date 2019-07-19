@@ -1,0 +1,13 @@
+type: object
+description: Учредитель физлица
+properties:
+  fio:
+    type: string
+  innfl:
+    type: string
+  share:
+    $ref: '#/definitions/Share'
+  date:
+    type: string
+  firstDate:
+    type: string

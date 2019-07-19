@@ -1,0 +1,33 @@
+type: object
+properties:
+  date:
+    type: string
+  shareHoldersFl:
+    type: array
+    items:
+      $ref: '#/definitions/ShareHolderFl'
+  shareHoldersUl:
+    type: array
+    items:
+      $ref: '#/definitions/ShareHolderUl'
+  shareholdersOther:
+    type: array
+    items:
+      $ref: '#/definitions/ShareHolderOther'
+  statedCapitals:
+    type: array
+    items:
+      $ref: '#/definitions/StatedCapital'
+  foundersFl:
+    type: array
+    items:
+      $ref: '#/definitions/FounderFl'
+  foundersUl:
+    type: array
+    items:
+      $ref: '#/definitions/FounderUl'
+  foundersForeign:
+    type: array
+    items:
+      $ref: '#/definitions/FounderForeign'
+

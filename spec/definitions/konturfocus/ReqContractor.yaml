@@ -1,0 +1,7 @@
+type: object
+discriminator: reqContractorType
+required:
+  - reqContractorType
+properties:
+  reqContractorType:
+    type: string

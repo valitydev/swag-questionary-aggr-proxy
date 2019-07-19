@@ -1,0 +1,16 @@
+type: object
+description: Сведения регистрирующего органа
+properties:
+  nalogCode:
+    description: Код налогового органа
+    type: string
+  nalogName:
+    description: Наименование налогового органа
+    type: string
+  nalogRegDate:
+    description: Дата поставки на учет
+    type: string
+  kpp:
+    type: string
+  date:
+    type: string

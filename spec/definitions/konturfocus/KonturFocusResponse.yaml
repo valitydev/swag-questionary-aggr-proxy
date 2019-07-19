@@ -1,0 +1,7 @@
+type: object
+discriminator: konturFocusResponseType
+required:
+  - konturFocusResponseType
+properties:
+  konturFocusResponseType:
+    type: string

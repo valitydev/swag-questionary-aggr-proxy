@@ -1,0 +1,11 @@
+type: object
+properties:
+  redStatements:
+    description: Наличие информации, помеченной красным цветом
+    type: boolean
+  yellowStatements:
+    description: Наличие информации, помеченной красным желтым
+    type: boolean
+  greenStatements:
+    description: Наличие информации, помеченной красным зеленым
+    type: boolean

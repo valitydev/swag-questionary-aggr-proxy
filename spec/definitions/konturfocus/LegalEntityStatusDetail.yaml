@@ -1,0 +1,17 @@
+type: object
+description: Статус организации
+properties:
+  status:
+    description: Неформализованное описание статуса
+    type: string
+  reorganizing:
+    description: В процессе реорганизации (может прекратить деятельность в результате реорганизации)
+    type: boolean
+  dissolving:
+    description: В стадии ликвидации (либо пранируется исключение из ЕГРЮЛ)
+    type: boolean
+  dissolved:
+    description: Недействующее
+    type: boolean
+  date:
+    type: string

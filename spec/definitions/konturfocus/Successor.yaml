@@ -1,0 +1,12 @@
+type: object
+description: Предшественники
+properties:
+  name:
+    description: Наименование огранизации
+    type: string
+  inn:
+    type: string
+  ogrn:
+    type: string
+  date:
+    type: string

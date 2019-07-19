@@ -1,0 +1,11 @@
+type: object
+description: Вид деятельности
+properties:
+  principalActivity:
+    $ref: '#/definitions/PrincipalActivity'
+  complementaryActivities:
+    type: array
+    items:
+      $ref: '#/definitions/ComplementaryActivity'
+  okvedVersion:
+    type: string

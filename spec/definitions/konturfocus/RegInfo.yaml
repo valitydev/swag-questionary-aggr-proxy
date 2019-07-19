@@ -1,0 +1,9 @@
+type: object
+description: Сведения о регистрации
+properties:
+  ogrnDate:
+    description: Дата присвоения ОГРН
+    type: string
+  regName:
+    description: Наименование органа, зарегистрировавшего юридическое лицо
+    type: string

@@ -1,0 +1,17 @@
+type: object
+description: Лицо имеющее право подписи без доверенности (руководитель)
+properties:
+  fio:
+    type: string
+  innfl:
+    description: ИННФЛ
+    type: string
+  position:
+    description: Должность
+    type: string
+  date:
+    description: Дата последнего внесения изменений
+    type: string
+  firstDate:
+    description: Дата первого внесения сведений
+    type: string

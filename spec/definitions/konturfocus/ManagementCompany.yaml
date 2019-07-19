@@ -1,0 +1,18 @@
+type: object
+description: Управляющая компания
+properties:
+  name:
+    description: Наименование управляющей организации
+    type: string
+  inn:
+    description: ИНН управляющей организации (если указан)
+    type: string
+  ogrn:
+    description: ОГРН управляющей организации (если указан)
+    type: string
+  date:
+    description: Дата последнего внесения изменений
+    type: string
+  firstDate:
+    description: Дата первого внесения сведений
+    type: string

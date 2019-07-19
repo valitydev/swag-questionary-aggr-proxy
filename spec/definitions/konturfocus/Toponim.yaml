@@ -1,0 +1,8 @@
+type: object
+properties:
+  topoShortName:
+    type: string
+  topoFullName:
+    type: string
+  topoValue:
+    type: string

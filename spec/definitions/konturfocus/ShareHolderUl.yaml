@@ -1,0 +1,22 @@
+type: object
+description: Акционеры - юрлица
+properties:
+  ogrn:
+    type: string
+  inn:
+    type: string
+  fullName:
+    description: Полное наименование юридического лица
+    type: string
+  address:
+    description: Местонахождение юрлица
+    type: string
+  votingSharesPercent:
+    description: Доля обыкновенных акций в процентах
+    type: integer
+  capitalSharesPercent:
+    description: Доля участия в уставном каптале в процентах
+    type: integer
+  date:
+    description: Дата последнего изменения в долях
+    type: string

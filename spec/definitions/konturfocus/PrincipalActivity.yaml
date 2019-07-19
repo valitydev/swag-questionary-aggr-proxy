@@ -1,0 +1,11 @@
+type: object
+description: Основной вид деятельности
+properties:
+  code:
+    description: Код вида деятельности
+    type: string
+  text:
+    description: Название вида деятельности
+    type: string
+  date:
+    type: string

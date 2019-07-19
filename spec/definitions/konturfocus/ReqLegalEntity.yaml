@@ -1,0 +1,49 @@
+type: object
+description: Информация о юридическом лице
+allOf:
+  - $ref: '#/definitions/ReqContractor'
+  - type: object
+    properties:
+      kpp:
+        type: string
+      okpo:
+        type: string
+      okato:
+        type: string
+      okfs:
+        type: string
+      oktmo:
+        type: string
+      okogu:
+        type: string
+      okopf:
+        type: string
+      opf:
+        description: Наименование огранизационной правовой формы
+        type: string
+      legalName:
+        $ref: '#/definitions/LegalName'
+      legalAddress:
+        $ref: '#/definitions/LegalAddress'
+      branches:
+        type: array
+        items:
+          $ref: '#/definitions/Branch'
+      status:
+        $ref: '#/definitions/LegalEntityStatusDetail'
+      registrationDate:
+        description: Дата образования
+        type: string
+      dissolutionDate:
+        description: Дата прекращения деятельности в результате ликвидации, реорганизации или других событий
+        type: string
+      heads:
+        type: array
+        items:
+          $ref: '#/definitions/Head'
+      managementCompanies:
+        type: array
+        items:
+          $ref: '#/definitions/ManagementCompany'
+      history:
+        $ref: '#/definitions/ReqHistory'

@@ -1,0 +1,16 @@
+type: object
+description: Учредители - иностранные компании
+properties:
+  fullName:
+    description: Полное наименование юридического лица
+    type: string
+  country:
+    type: string
+  share:
+    $ref: '#/definitions/Share'
+  date:
+    description: Дата последнего внесения изменений
+    type: string
+  firstDate:
+    description: Дата первого внесения сведений
+    type: string

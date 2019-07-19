@@ -1,0 +1,6 @@
+type: object
+properties:
+  kpp:
+    type: string
+  date:
+    type: string

@@ -1,0 +1,7 @@
+type: object
+discriminator: egrDetailContractorType
+required:
+  - egrDetailContractorType
+properties:
+  egrDetailContractorType:
+    type: string

@@ -1,0 +1,12 @@
+type: object
+description: Филиалы и представительства
+properties:
+  name:
+    description: Наименование филиала или представительства
+    type: string
+  addressRf:
+    $ref: '#/definitions/ParsedAddressRF'
+  foreignAddress:
+    $ref: '#/definitions/ForeignAddress'
+  date:
+    type: string

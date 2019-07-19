@@ -1,0 +1,15 @@
+type: object
+description: Учредитель юрлица
+properties:
+  ogrn:
+    type: string
+  inn:
+    type: string
+  fullName:
+    description: Полное наименование юридического лица
+  share:
+    $ref: '#/definitions/Share'
+  date:
+    type: string
+  firstDate:
+    type: string

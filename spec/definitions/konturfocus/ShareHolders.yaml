@@ -1,0 +1,11 @@
+type: object
+description: Акционеры, являющиеся аффилированными лицами
+properties:
+  date:
+    type: string
+  shareHoldersFl:
+    $ref: '#/definitions/ShareHolderFl'
+  shareHoldersUl:
+    $ref: '#/definitions/ShareHolderUl'
+  shareHoldersOther:
+    $ref: '#/definitions/ShareHolderOther'

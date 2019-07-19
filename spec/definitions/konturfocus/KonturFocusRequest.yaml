@@ -1,0 +1,8 @@
+type: object
+description: Тело запроса в KonturFocus
+discriminator: konturFocusRequestType
+required:
+  - konturFocusRequestType
+properties:
+  konturFocusRequestType:
+    type: string

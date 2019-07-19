@@ -1,0 +1,9 @@
+type: object
+description: Адрес вне РФ
+properties:
+  countryName:
+    description: Наименование страы
+    type: string
+  address:
+    description: Строка, содержащая адрес
+    type: string

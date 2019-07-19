@@ -1,0 +1,10 @@
+type: object
+description: Юридический адрес
+properties:
+  addressRf:
+    $ref: '#/definitions/ParsedAddressRF'
+  date:
+    type: string
+  firstDate:
+    description: Дата первого внесения сведений
+    type: string

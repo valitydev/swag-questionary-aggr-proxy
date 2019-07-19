@@ -1,0 +1,21 @@
+type: object
+required:
+  - inn
+  - ogrn
+  - focusHref
+  - contractor
+  - briefReport
+  - contactPhones
+properties:
+  inn:
+    type: string
+  ogrn:
+    type: string
+  focusHref:
+    $ref: '#/definitions/KonturFocusUrl'
+  contractor:
+    $ref: '#/definitions/ReqContractor'
+  briefReport:
+    $ref: '#/definitions/BriefReport'
+  contactPhones:
+    $ref: '#/definitions/ContactPhones'

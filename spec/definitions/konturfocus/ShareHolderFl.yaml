@@ -1,0 +1,16 @@
+type: object
+description: Акционеры - физлица
+properties:
+  fio:
+    type: string
+  address:
+    description: Местожительства физлица
+    type: string
+  votingSharesPercent:
+    description: Доля обыкновенных акций в процентах
+    type: integer
+  capitalSharesPercent:
+    description: Доля участия в уставном каптале в процентах
+    type: integer
+  date:
+    type: string

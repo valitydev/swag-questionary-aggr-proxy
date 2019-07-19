@@ -1,0 +1,36 @@
+description: Разобранный на составляющие адрес в РФ
+properties:
+  zipCode:
+    description: Индекс
+    type: string
+  kladrCode:
+    description: Код КЛАДР
+    type: string
+  regionCode:
+    description: Код региона
+    type: string
+  regionName:
+    $ref: '#/definitions/Toponim'
+  district:
+    $ref: '#/definitions/Toponim'
+  city:
+    $ref: '#/definitions/Toponim'
+  settlement:
+    $ref: '#/definitions/Toponim'
+  street:
+    $ref: '#/definitions/Toponim'
+  house:
+    $ref: '#/definitions/Toponim'
+  bulk:
+    $ref: '#/definitions/Toponim'
+  flat:
+    $ref: '#/definitions/Toponim'
+  houseRaw:
+    description: Полное значение поля "Дом" из ЕГРЮЛ
+    type: string
+  bulkRaw:
+    description: Полное значение поля "Корпус" из ЕГРЮЛ
+    type: string
+  flatRaw:
+    description: Полное значение поля "Квартира" из ЕГРЮЛ
+    type: string

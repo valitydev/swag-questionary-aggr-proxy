@@ -1,0 +1,7 @@
+type: object
+description: Свидетельства, подтверждающие факт внесения записи
+properties:
+  serialNumber:
+    type: string
+  date:
+    type: string

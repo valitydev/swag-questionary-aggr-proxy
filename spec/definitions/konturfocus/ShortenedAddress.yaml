@@ -1,0 +1,15 @@
+type: object
+description: Информация о местонахождении ИП
+required:
+  - regionCode
+properties:
+  regionCode:
+    type: string
+  regionName:
+    $ref: '#/definitions/Toponim'
+  district:
+    $ref: '#/definitions/Toponim'
+  city:
+    $ref: '#/definitions/Toponim'
+  settlement:
+    $ref: '#/definitions/Toponim'

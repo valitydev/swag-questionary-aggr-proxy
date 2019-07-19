@@ -1,0 +1,13 @@
+type: object
+allOf:
+  - $ref: '#/definitions/KonturFocusRequest'
+  - type: object
+    properties:
+      inn:
+        type: array
+        items:
+          type: string
+      ogrn:
+        type: array
+        items:
+          type: string

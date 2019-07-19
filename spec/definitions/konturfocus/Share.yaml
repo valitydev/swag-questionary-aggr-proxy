@@ -1,0 +1,16 @@
+type: object
+description: Доля в уставном капитале
+properties:
+  sum:
+    description: Сумма в рублях
+    type: integer
+    format: int64
+  percentagePlain:
+    description: Размер доли в процентах
+    type: integer
+  percentageNominator:
+    description: Размер доли в виде простой дроби (числитель)
+    type: integer
+  percentageDenominator:
+    description: Дата первого внесения сведений
+    type: integer

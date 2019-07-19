@@ -1,0 +1,26 @@
+type: object
+properties:
+  kpps:
+    type: array
+    items:
+      $ref: '#/definitions/ReqKppHistory'
+  legalNames:
+    type: array
+    items:
+      $ref: '#/definitions/LegalName'
+  legalAddresses:
+    type: array
+    items:
+      $ref: '#/definitions/LegalAddress'
+  branches:
+    type: array
+    items:
+      $ref: '#/definitions/Branch'
+  managementCompanies:
+    type: array
+    items:
+      $ref: '#/definitions/ManagementCompany'
+  heads:
+    type: array
+    items:
+      $ref: '#/definitions/Head'

@@ -1,0 +1,43 @@
+get:
+  tags:
+    - KonturFocus
+  operationId: requestKonturFocus
+  parameters:
+    - $ref: '#/parameters/requestID'
+    - name: Authorization
+      in: header
+      required: true
+      type: string
+      format: string
+    - name: konturFocusParams
+      description: Запрос в KonturFocus
+      in: body
+      required: true
+      schema:
+        $ref: '#/definitions/KonturFocusParams'
+  responses:
+    '201':
+      description: Ответ на запрос в KonturFocus
+      schema:
+        $ref: '#/definitions/KonturFocusResponse'
+    '404':
+      $ref: '#/responses/NotFound'
+    '401':
+      $ref: '#/responses/Unauthorized'
+    '400':
+      description: Ошибочные данные
+      schema:
+        type: object
+        required:
+          - code
+          - message
+        properties:
+          code:
+            description: |
+              [Код ошибки](#tag/Error-Codes)
+            type: string
+            enum:
+              - daDataRequestException
+          message:
+            description: Человекочитаемое описание ошибки
+            type: string

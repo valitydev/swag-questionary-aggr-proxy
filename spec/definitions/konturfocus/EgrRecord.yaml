@@ -1,0 +1,27 @@
+type: object
+description: Запись в ЕГРЮЛ
+properties:
+  grn:
+    description: ГРН записи
+    type: string
+  date:
+    description: Дата внесения записи
+    type: string
+  name:
+    description: Причина внесения записи
+    type: string
+  invalid:
+    description: Признак недействительности записи
+    type: boolean
+  regName:
+    description: Имя регистрирующего органа, который внес запись
+    type: string
+  regCode:
+    description: Код регистрирующего органа, который внес запись
+    type: string
+  documents:
+    $ref: '#/definitions/RecordDocument'
+  certificates:
+    type: array
+    items:
+      $ref: '#/definitions/Certificate'
