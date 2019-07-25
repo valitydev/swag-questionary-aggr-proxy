@@ -8,7 +8,9 @@ allOf:
       count:
         type: integer
       status:
-        $ref: '#/definitions/OrgStatus'
+        type: array
+        items:
+          $ref: '#/definitions/OrgStatus'
       type:
         $ref: '#/definitions/OrgType'
       locations:

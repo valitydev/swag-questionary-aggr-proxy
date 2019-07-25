@@ -17,6 +17,6 @@ properties:
     type: string
   gender:
     $ref: '#/definitions/Gender'
-  gc:
+  qc:
     description: Код качества
     type: integer

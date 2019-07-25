@@ -1,0 +1,10 @@
+type: object
+allOf:
+  - $ref: '#/definitions/KonturFocusResponse'
+  - type: object
+    properties:
+      responses:
+        type: array
+        items:
+          $ref: '#/definitions/LicencesResponse'
+

@@ -1,0 +1,11 @@
+type: object
+properties:
+  name:
+    description: Название станции
+    type: string
+  line:
+    description: Название линии
+    type: string
+  distance:
+    description: Расстояние до станции в километрах
+    type: string

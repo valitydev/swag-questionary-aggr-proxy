@@ -3,7 +3,7 @@ required:
   - inn
   - ogrn
   - focusHref
-  - contractor
+  - licenses
 properties:
   inn:
     type: string
@@ -11,5 +11,8 @@ properties:
     type: string
   focusHref:
     $ref: '#/definitions/KonturFocusUrl'
-  contractor:
-    $ref: '#/definitions/EgrDetailsContractor'
+  licenses:
+    type: array
+    items:
+      $ref: '#/definitions/KonturFocusLicense'
+

@@ -64,7 +64,7 @@ properties:
   geoLon:
     description: Координаты (долгота)
     type: string
-  gcGeo:
+  qcGeo:
     description: Код точности координат
     type: integer
   fiasCode:
@@ -86,5 +86,5 @@ properties:
   metroList:
     type: array
     items:
-      type: string
+      $ref: '#/definitions/AddressMetro'
 

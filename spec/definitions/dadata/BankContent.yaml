@@ -26,6 +26,7 @@ properties:
     type: string
   rkc:
     description: Ссылка на РКЦ. Структура идентична структуре объекта банка
+    type: string
   address:
     $ref: '#/definitions/DaDataAddress'
   phone:

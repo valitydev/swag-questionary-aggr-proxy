@@ -8,4 +8,6 @@ allOf:
       queryType:
         $ref: '#/definitions/QueryType'
       filters:
-        $ref: '#/definitions/FmsUnitQueryFilter'
+        type: array
+        items:
+          $ref: '#/definitions/FmsUnitQueryFilter'

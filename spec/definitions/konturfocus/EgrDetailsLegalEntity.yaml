@@ -48,4 +48,4 @@ allOf:
         items:
           $ref: '#/definitions/EgrRecord'
       history:
-        $ref: '#/definitions/EgrDetailHistory'
+        $ref: '#/definitions/EgrDetailsHistory'

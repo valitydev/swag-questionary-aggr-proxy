@@ -20,7 +20,9 @@ properties:
     description: Код регистрирующего органа, который внес запись
     type: string
   documents:
-    $ref: '#/definitions/RecordDocument'
+    type: array
+    items:
+      $ref: '#/definitions/RecordDocument'
   certificates:
     type: array
     items:

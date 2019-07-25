@@ -4,8 +4,14 @@ properties:
   date:
     type: string
   shareHoldersFl:
-    $ref: '#/definitions/ShareHolderFl'
+    type: array
+    items:
+      $ref: '#/definitions/ShareHolderFl'
   shareHoldersUl:
-    $ref: '#/definitions/ShareHolderUl'
+    type: array
+    items:
+      $ref: '#/definitions/ShareHolderUl'
   shareHoldersOther:
-    $ref: '#/definitions/ShareHolderOther'
+    type: array
+    items:
+      $ref: '#/definitions/ShareHolderOther'

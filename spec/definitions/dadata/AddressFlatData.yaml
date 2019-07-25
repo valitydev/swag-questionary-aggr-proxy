@@ -10,5 +10,7 @@ properties:
     type: string
   flatArea:
     description: Площадь квартиры
+    type: string
   flatPrice:
+    type: string
     description: Рыночная стоимость квартиры
