@@ -3,12 +3,6 @@ get:
     - KonturFocus
   operationId: requestKonturFocus
   parameters:
-    - $ref: '#/parameters/requestID'
-    - name: Authorization
-      in: header
-      required: true
-      type: string
-      format: string
     - name: konturFocusParams
       description: Запрос в KonturFocus
       in: body

@@ -4,7 +4,7 @@ properties:
   numeric:
     description: Числовой код страны по ОКСМ
     type: string
-  aplha3:
+  alpha3:
     description: Трехбуквенный код страны по ОКСМ
     type: string
   countryFullName:
