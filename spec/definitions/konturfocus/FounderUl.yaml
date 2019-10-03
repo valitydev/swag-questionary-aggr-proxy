@@ -7,8 +7,9 @@ properties:
     type: string
   fullName:
     description: Полное наименование юридического лица
+    type: string
   share:
-    $ref: '#/definitions/Share'
+    $ref: "#/definitions/Share"
   date:
     type: string
   firstDate:
