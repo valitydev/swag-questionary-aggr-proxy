@@ -11,7 +11,7 @@ build:
 deploy:
   steps:
     - lukevivier/gh-pages:
-      repo: rbkmoney/swag-questionary-aggr-public
+      repo: rbkmoney/swag-questionary-aggr-proxy-public
       token: ${GITHUB_API_TOKEN}
   after-steps:
     - slack-notifier:
