@@ -6,3 +6,10 @@ required:
 properties:
   daDataRequestType:
     type: string
+    enum:
+      - AddressQuery
+      - PartyQuery
+      - BankQuery
+      - FioQuery
+      - FmsUnitQuery
+      - OkvedQuery
