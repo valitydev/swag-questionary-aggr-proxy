@@ -1,9 +1,6 @@
 type: object
 required:
   - request
-  - endpoint
 properties:
   request:
     $ref: '#/definitions/DaDataRequest'
-  endpoint:
-    $ref: '#/definitions/DaDataEndpoint'

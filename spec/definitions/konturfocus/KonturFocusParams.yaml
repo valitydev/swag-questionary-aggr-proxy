@@ -1,9 +1,6 @@
 type: object
 required:
   - request
-  - endpoint
 properties:
   request:
     $ref: '#/definitions/KonturFocusRequest'
-  endpoint:
-    $ref: '#/definitions/KonturFocusEndPoint'
