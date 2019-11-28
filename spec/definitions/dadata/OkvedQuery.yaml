@@ -2,6 +2,9 @@ type: object
 allOf:
   - $ref: '#/definitions/DaDataRequest'
   - type: object
+    required:
+      - query
+      - queryType
     properties:
       query:
         type: string
