@@ -1,0 +1,3075 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "RBKmoney Questionary aggr proxy API",
+    "description": "\nProxy service for DaData/KonturFocus API\n",
+    "termsOfService": "http://rbk.money/",
+    "contact": {
+      "name": "RBKmoney support team",
+      "email": "support@rbk.money",
+      "url": "https://rbk.money"
+    }
+  },
+  "host": "api.rbk.money",
+  "basePath": "/questionary-aggr/v0",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json; charset=utf-8"
+  ],
+  "produces": [
+    "application/json; charset=utf-8"
+  ],
+  "securityDefinitions": {
+    "bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Для аутентификации вызовов мы используем [JWT](https://jwt.io). Cоответствующий ключ передается в заголовке.\n```shell\n Authorization: Bearer {TOKENIZATION|PRIVATE_JWT}\n```\n"
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ],
+  "responses": {
+    "NotFound": {
+      "description": "Заданный ресурс не найден",
+      "schema": {
+        "$ref": "#/definitions/GeneralError"
+      }
+    },
+    "Unauthorized": {
+      "description": "Ошибка авторизации"
+    }
+  },
+  "parameters": {
+    "requestID": {
+      "name": "X-Request-ID",
+      "in": "header",
+      "description": "Уникальный идентификатор запроса к системе",
+      "required": true,
+      "type": "string",
+      "maxLength": 32,
+      "minLength": 1
+    }
+  },
+  "paths": {
+    "/proxy/dadata": {
+      "post": {
+        "tags": [
+          "DaData"
+        ],
+        "operationId": "requestDaData",
+        "parameters": [
+          {
+            "name": "daDataParams",
+            "description": "Запрос в DaData",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DaDataParams"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Ответ на запрос в DaData",
+            "schema": {
+              "$ref": "#/definitions/DaDataResponse"
+            }
+          },
+          "400": {
+            "description": "Ошибочные данные",
+            "schema": {
+              "type": "object",
+              "required": [
+                "code",
+                "message"
+              ],
+              "properties": {
+                "code": {
+                  "description": "[Код ошибки](#tag/Error-Codes)\n",
+                  "type": "string",
+                  "enum": [
+                    "daDataRequestException"
+                  ]
+                },
+                "message": {
+                  "description": "Человекочитаемое описание ошибки",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/proxy/konturfocus": {
+      "post": {
+        "tags": [
+          "KonturFocus"
+        ],
+        "operationId": "requestKonturFocus",
+        "parameters": [
+          {
+            "name": "konturFocusParams",
+            "description": "Запрос в KonturFocus",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/KonturFocusParams"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Ответ на запрос в KonturFocus",
+            "schema": {
+              "$ref": "#/definitions/KonturFocusResponse"
+            }
+          },
+          "400": {
+            "description": "Ошибочные данные",
+            "schema": {
+              "type": "object",
+              "required": [
+                "code",
+                "message"
+              ],
+              "properties": {
+                "code": {
+                  "description": "[Код ошибки](#tag/Error-Codes)\n",
+                  "type": "string",
+                  "enum": [
+                    "daDataRequestException"
+                  ]
+                },
+                "message": {
+                  "description": "Человекочитаемое описание ошибки",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AddressAreaData": {
+      "type": "object",
+      "properties": {
+        "areaFiasId": {
+          "description": "Код ФИАС района в регионе",
+          "type": "string"
+        },
+        "areaKladrId": {
+          "description": "Код КЛАДР района в регионе",
+          "type": "string"
+        },
+        "areaWithType": {
+          "description": "Район в регионе с типом",
+          "type": "string"
+        },
+        "areaType": {
+          "description": "Тип района в регионе (сокращенный)",
+          "type": "string"
+        },
+        "areaTypeFull": {
+          "type": "string"
+        },
+        "area": {
+          "description": "Район регионе",
+          "type": "string"
+        }
+      }
+    },
+    "AddressBlockData": {
+      "type": "object",
+      "properties": {
+        "blockType": {
+          "description": "Тип корпуса/строения (сокращенный)",
+          "type": "string"
+        },
+        "blockTypeFull": {
+          "type": "string"
+        },
+        "block": {
+          "description": "Корпус/строение",
+          "type": "string"
+        }
+      }
+    },
+    "AddressCityData": {
+      "type": "object",
+      "properties": {
+        "cityFiasId": {
+          "type": "string"
+        },
+        "cityKladrId": {
+          "type": "string"
+        },
+        "cityWithType": {
+          "type": "string"
+        },
+        "cityType": {
+          "description": "Тип города (сокращенный)",
+          "type": "string"
+        },
+        "cityTypeFull": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "cityArea": {
+          "description": "Административный округ",
+          "type": "string"
+        }
+      }
+    },
+    "AddressCityDistrictData": {
+      "type": "object",
+      "properties": {
+        "cityDistrictFiasId": {
+          "type": "string"
+        },
+        "cityDistrictKladrId": {
+          "type": "string"
+        },
+        "cityDistrictWithType": {
+          "type": "string"
+        },
+        "cityDistrictType": {
+          "description": "Тип района города (сокращенный)",
+          "type": "string"
+        },
+        "cityDistrictTypeFull": {
+          "type": "string"
+        },
+        "cityDistrict": {
+          "type": "string"
+        }
+      }
+    },
+    "AddressFlatData": {
+      "type": "object",
+      "properties": {
+        "flatType": {
+          "description": "Тип квартиры (сокращенный)",
+          "type": "string"
+        },
+        "flatTypeFull": {
+          "type": "string"
+        },
+        "flat": {
+          "description": "Квартира",
+          "type": "string"
+        },
+        "flatArea": {
+          "description": "Площадь квартиры",
+          "type": "string"
+        },
+        "flatPrice": {
+          "type": "string",
+          "description": "Рыночная стоимость квартиры"
+        }
+      }
+    },
+    "AddressHouseData": {
+      "type": "object",
+      "properties": {
+        "houseFiasId": {
+          "type": "string"
+        },
+        "houseKladrId": {
+          "type": "string"
+        },
+        "houseType": {
+          "description": "Тип дома (сокращенный)",
+          "type": "string"
+        },
+        "houseTypeFull": {
+          "description": "Тип дома",
+          "type": "string"
+        },
+        "house": {
+          "description": "Дом",
+          "type": "string"
+        }
+      }
+    },
+    "AddressLocationFilter": {
+      "type": "object",
+      "properties": {
+        "kladrId": {
+          "type": "string"
+        },
+        "cityFiasId": {
+          "type": "string"
+        },
+        "areaFiasId": {
+          "type": "string"
+        },
+        "regionFiasId": {
+          "type": "string"
+        },
+        "settlementFiasId": {
+          "type": "string"
+        },
+        "streetFiasId": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        }
+      }
+    },
+    "AddressMetro": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Название станции",
+          "type": "string"
+        },
+        "line": {
+          "description": "Название линии",
+          "type": "string"
+        },
+        "distance": {
+          "description": "Расстояние до станции в километрах",
+          "type": "string"
+        }
+      }
+    },
+    "AddressQuery": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DaDataRequest"
+        },
+        {
+          "type": "object",
+          "required": [
+            "query"
+          ],
+          "properties": {
+            "query": {
+              "description": "Запрос для которого нужно получить подсказки",
+              "type": "string"
+            },
+            "count": {
+              "description": "Количество возвращаемых подсказок",
+              "type": "integer"
+            },
+            "locations": {
+              "description": "Ограничение области поиска",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AddressLocationFilter"
+              }
+            },
+            "locationsBoost": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LocationBoostFilter"
+              }
+            },
+            "fromBound": {
+              "$ref": "#/definitions/BoundType"
+            },
+            "toBound": {
+              "$ref": "#/definitions/BoundType"
+            },
+            "restrictValue": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "AddressRegionData": {
+      "type": "object",
+      "properties": {
+        "regionFiasId": {
+          "description": "Код ФИАС региона",
+          "type": "string"
+        },
+        "regionKladrId": {
+          "description": "Код КЛАДР региона",
+          "type": "string"
+        },
+        "regionWithType": {
+          "type": "string"
+        },
+        "regionType": {
+          "description": "Тип региона (сокращенный)",
+          "type": "string"
+        },
+        "regionTypeFull": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        }
+      }
+    },
+    "AddressResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DaDataResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "suggestions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DaDataAddress"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "AddressSettlementData": {
+      "type": "object",
+      "properties": {
+        "settlementFiasId": {
+          "description": "Код ФИАС населенного пункта",
+          "type": "string"
+        },
+        "settlementKladrId": {
+          "description": "Код КЛАДР населенного пункта",
+          "type": "string"
+        },
+        "settlementWithType": {
+          "type": "string"
+        },
+        "settlementType": {
+          "type": "string"
+        },
+        "settlementTypeFull": {
+          "type": "string"
+        },
+        "settlement": {
+          "type": "string"
+        }
+      }
+    },
+    "AddressStreetData": {
+      "type": "object",
+      "properties": {
+        "streetFiasId": {
+          "type": "string"
+        },
+        "streetKladrId": {
+          "type": "string"
+        },
+        "streetWithType": {
+          "type": "string"
+        },
+        "streetType": {
+          "type": "string"
+        },
+        "streetTypeFull": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        }
+      }
+    },
+    "Authorities": {
+      "type": "object",
+      "description": "Сведения о налоговой, ПФР и ФСС",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
+      }
+    },
+    "BankContent": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "Наименование организации одной строкой",
+          "type": "string"
+        },
+        "unrestrictedValue": {
+          "description": "Наименование компании одной строкой (полное)",
+          "type": "string"
+        },
+        "opf": {
+          "$ref": "#/definitions/Opf"
+        },
+        "payment": {
+          "$ref": "#/definitions/Payment"
+        },
+        "bic": {
+          "description": "Банковский идентификационный код (БИК) ЦБ РФ",
+          "type": "string"
+        },
+        "swift": {
+          "description": "Банковский идентификационный код в системе SWIFT",
+          "type": "string"
+        },
+        "okpo": {
+          "type": "string"
+        },
+        "correspondentAccount": {
+          "description": "Корреспондентский счет в ЦБ РФ",
+          "type": "string"
+        },
+        "registrationNumber": {
+          "description": "Регистрационный номер в ЦБ РФ",
+          "type": "string"
+        },
+        "rkc": {
+          "description": "Ссылка на РКЦ. Структура идентична структуре объекта банка",
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/DaDataAddress"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/DaDataState"
+        }
+      }
+    },
+    "BankQuery": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DaDataRequest"
+        },
+        {
+          "type": "object",
+          "required": [
+            "query"
+          ],
+          "properties": {
+            "query": {
+              "type": "string"
+            },
+            "count": {
+              "type": "integer"
+            },
+            "status": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OrgStatus"
+              }
+            },
+            "type": {
+              "$ref": "#/definitions/OrgType"
+            }
+          }
+        }
+      ]
+    },
+    "BankResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DaDataResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "suggestions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BankContent"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "BoundType": {
+      "type": "string",
+      "enum": [
+        "Region",
+        "Area",
+        "City",
+        "Settlement",
+        "Street",
+        "House"
+      ]
+    },
+    "BranchType": {
+      "type": "string",
+      "enum": [
+        "Main",
+        "Branch"
+      ]
+    },
+    "CitizenshipIP": {
+      "type": "object",
+      "description": "Гражданство ИП",
+      "properties": {
+        "numeric": {
+          "description": "Числовой код страны по ОКСМ",
+          "type": "string"
+        },
+        "alpha3": {
+          "description": "Трехбуквенный код страны по ОКСМ",
+          "type": "string"
+        },
+        "countryFullName": {
+          "description": "Полное наименование страны",
+          "type": "string"
+        },
+        "countryShortName": {
+          "description": "Краткое наименование страны",
+          "type": "string"
+        }
+      }
+    },
+    "DaDataAddress": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "Адрес одной строкой",
+          "type": "string"
+        },
+        "unrestrictedValue": {
+          "description": "Адрес одной строкой",
+          "type": "string"
+        },
+        "postalCode": {
+          "description": "Индекс",
+          "type": "string"
+        },
+        "contry": {
+          "type": "string"
+        },
+        "federalDistrict": {
+          "description": "Федеальный округ",
+          "type": "string"
+        },
+        "region": {
+          "$ref": "#/definitions/AddressRegionData"
+        },
+        "area": {
+          "$ref": "#/definitions/AddressAreaData"
+        },
+        "city": {
+          "$ref": "#/definitions/AddressCityData"
+        },
+        "cityDistrict": {
+          "$ref": "#/definitions/AddressCityDistrictData"
+        },
+        "settlement": {
+          "$ref": "#/definitions/AddressSettlementData"
+        },
+        "street": {
+          "$ref": "#/definitions/AddressStreetData"
+        },
+        "house": {
+          "$ref": "#/definitions/AddressHouseData"
+        },
+        "block": {
+          "$ref": "#/definitions/AddressBlockData"
+        },
+        "flatData": {
+          "$ref": "#/definitions/AddressFlatData"
+        },
+        "postalBox": {
+          "type": "string"
+        },
+        "fiasId": {
+          "type": "string"
+        },
+        "fiasLevel": {
+          "type": "integer"
+        },
+        "kladrId": {
+          "type": "string"
+        },
+        "geonameId": {
+          "type": "string"
+        },
+        "capitalMarker": {
+          "type": "integer"
+        },
+        "okato": {
+          "type": "string"
+        },
+        "oktmo": {
+          "type": "string"
+        },
+        "taxOffice": {
+          "type": "string"
+        },
+        "taxOfficeLegal": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "historyValues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "geoLat": {
+          "description": "Координаты (широта)",
+          "type": "string"
+        },
+        "geoLon": {
+          "description": "Координаты (долгота)",
+          "type": "string"
+        },
+        "qcGeo": {
+          "description": "Код точности координат",
+          "type": "integer"
+        },
+        "fiasCode": {
+          "description": "Иерархический код адреса в ФИАС",
+          "type": "string"
+        },
+        "fiasActualityState": {
+          "description": "Признак актуальности адреса в ФИАС",
+          "type": "integer"
+        },
+        "beltwayHit": {
+          "description": "Внутри кольцевой",
+          "type": "string"
+        },
+        "beltwayDistance": {
+          "description": "Расстояние от кольцевой в километрах",
+          "type": "string"
+        },
+        "squareMeterPrice": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "metroList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AddressMetro"
+          }
+        }
+      }
+    },
+    "DaDataHID": {
+      "type": "object",
+      "properties": {
+        "hid": {
+          "description": "Уникальный идентификатор в DaData",
+          "type": "string"
+        }
+      }
+    },
+    "DaDataLicense": {
+      "type": "object",
+      "properties": {
+        "series": {
+          "description": "Серия докумена",
+          "type": "string"
+        },
+        "number": {
+          "description": "Номер документа",
+          "type": "string"
+        },
+        "issueDate": {
+          "description": "Дата выдачи",
+          "type": "string"
+        },
+        "issueAuthority": {
+          "description": "Название выдавшего органа",
+          "type": "string"
+        },
+        "suspendDate": {
+          "description": "Дата приостановки",
+          "type": "string"
+        },
+        "suspendAuthority": {
+          "description": "Название приостановившего органа",
+          "type": "string"
+        },
+        "validFrom": {
+          "description": "Дата начала действия",
+          "type": "string"
+        },
+        "validTo": {
+          "description": "Дата окончания действия",
+          "type": "string"
+        },
+        "activities": {
+          "description": "Перечень лицензируемых видов деятельности",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "addresses": {
+          "description": "Перечень адресов, по которым действует лицензия",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "DaDataParams": {
+      "type": "object",
+      "required": [
+        "request"
+      ],
+      "properties": {
+        "request": {
+          "$ref": "#/definitions/DaDataRequest"
+        }
+      }
+    },
+    "DaDataRequest": {
+      "type": "object",
+      "description": "Тело запроса в DaData",
+      "discriminator": "daDataRequestType",
+      "required": [
+        "daDataRequestType"
+      ],
+      "properties": {
+        "daDataRequestType": {
+          "type": "string",
+          "enum": [
+            "AddressQuery",
+            "PartyQuery",
+            "BankQuery",
+            "FioQuery",
+            "FmsUnitQuery",
+            "OkvedQuery"
+          ]
+        }
+      }
+    },
+    "DaDataResponse": {
+      "type": "object",
+      "discriminator": "daDataResponseType",
+      "required": [
+        "daDataResponseType"
+      ],
+      "properties": {
+        "daDataResponseType": {
+          "type": "string"
+        }
+      }
+    },
+    "DaDataState": {
+      "type": "object",
+      "properties": {
+        "actualityDate": {
+          "description": "Дата актуальности сведений",
+          "type": "string"
+        },
+        "registratonDate": {
+          "description": "Дата регистрации",
+          "type": "string"
+        },
+        "liquidationDate": {
+          "description": "Дата ликвидации",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/OrgStatus"
+        }
+      }
+    },
+    "FioContent": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "ФИО одной строкой",
+          "type": "string"
+        },
+        "unrestrictedValue": {
+          "description": "ФИО одной строкой",
+          "type": "string"
+        },
+        "surname": {
+          "description": "Фамилия",
+          "type": "string"
+        },
+        "name": {
+          "description": "Имя",
+          "type": "string"
+        },
+        "patronymic": {
+          "description": "Отчество",
+          "type": "string"
+        },
+        "gender": {
+          "$ref": "#/definitions/Gender"
+        },
+        "qc": {
+          "description": "Код качества",
+          "type": "integer"
+        }
+      }
+    },
+    "FioQuery": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DaDataRequest"
+        },
+        {
+          "type": "object",
+          "required": [
+            "query"
+          ],
+          "properties": {
+            "query": {
+              "type": "string"
+            },
+            "count": {
+              "type": "integer"
+            },
+            "parts": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "gender": {
+              "$ref": "#/definitions/Gender"
+            }
+          }
+        }
+      ]
+    },
+    "FioResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DaDataResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "suggestions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FioContent"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FmsUnitContent": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "Значение одной строкой",
+          "type": "string"
+        },
+        "unrestrictedValue": {
+          "description": "Значение одной строкой",
+          "type": "string"
+        },
+        "code": {
+          "description": "Код подразделения",
+          "type": "string"
+        },
+        "name": {
+          "description": "Название подразделения в творительном падеже («кем выдан?»)",
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "Код региона (2 цифры)",
+          "type": "string"
+        },
+        "type": {
+          "description": "Вид подразделения (1 цифра) 0 — подразделение ФМС 1 — ГУВД или МВД региона 2 — УВД или ОВД района или города 3 — отделение полиции",
+          "type": "string"
+        }
+      }
+    },
+    "FmsUnitQuery": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DaDataRequest"
+        },
+        {
+          "type": "object",
+          "required": [
+            "query",
+            "queryType"
+          ],
+          "properties": {
+            "query": {
+              "type": "string"
+            },
+            "queryType": {
+              "$ref": "#/definitions/QueryType"
+            },
+            "filters": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FmsUnitQueryFilter"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FmsUnitQueryFilter": {
+      "type": "object",
+      "properties": {
+        "regionCode": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "FmsUnitResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DaDataResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "suggestions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FmsUnitContent"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Founder": {
+      "type": "object",
+      "description": "Учредитель компании",
+      "properties": {
+        "ogrn": {
+          "description": "ОГРН учредителя (для юрлиц)",
+          "type": "string"
+        },
+        "inn": {
+          "description": "ИНН учредителя",
+          "type": "string"
+        },
+        "name": {
+          "description": "Наименование учредителя (для юрлиц)",
+          "type": "string"
+        },
+        "fio": {
+          "description": "ФИО учредителя для физлиц",
+          "type": "string"
+        },
+        "hid": {
+          "$ref": "#/definitions/DaDataHID"
+        },
+        "type": {
+          "$ref": "#/definitions/FounderType"
+        }
+      }
+    },
+    "FounderType": {
+      "type": "string",
+      "enum": [
+        "Legal",
+        "Physical"
+      ]
+    },
+    "Gender": {
+      "type": "string",
+      "enum": [
+        "Male",
+        "Female",
+        "Unknown"
+      ]
+    },
+    "IFNCRegistration": {
+      "type": "object",
+      "description": "ИФНС регистрации",
+      "properties": {
+        "type": {
+          "description": "Тип документа",
+          "type": "string"
+        },
+        "series": {
+          "description": "Серия документа",
+          "type": "string"
+        },
+        "number": {
+          "description": "Номер документа",
+          "type": "string"
+        },
+        "issueDate": {
+          "description": "Дата выдачи",
+          "type": "string"
+        },
+        "issueAuthority": {
+          "description": "Код подразделения",
+          "type": "string"
+        }
+      }
+    },
+    "LocationBoostFilter": {
+      "type": "object",
+      "description": "Приоритеты города при ранжировании",
+      "properties": {
+        "kladrId": {
+          "type": "string"
+        }
+      }
+    },
+    "LocationFilter": {
+      "type": "object",
+      "description": "Ограничение по региону",
+      "properties": {
+        "kladrId": {
+          "type": "string"
+        }
+      }
+    },
+    "Management": {
+      "type": "object",
+      "description": "Руководитель компании",
+      "properties": {
+        "name": {
+          "description": "ФИО руководителя",
+          "type": "string"
+        },
+        "post": {
+          "description": "Должность руководителя",
+          "type": "string"
+        }
+      }
+    },
+    "Manager": {
+      "type": "object",
+      "description": "Руководство компании",
+      "properties": {
+        "ogrn": {
+          "description": "ОГРН руководителя (для юрлиц)",
+          "type": "string"
+        },
+        "inn": {
+          "description": "ИНН руководителя",
+          "type": "string"
+        },
+        "name": {
+          "description": "Наименования руководителя (для юрлиц)",
+          "type": "string"
+        },
+        "fio": {
+          "description": "ФИО учредителя (для физлиц)",
+          "type": "string"
+        },
+        "post": {
+          "description": "Должность руководителя (для физлиц)",
+          "type": "string"
+        },
+        "hid": {
+          "$ref": "#/definitions/DaDataHID"
+        },
+        "type": {
+          "$ref": "#/definitions/ManagerType"
+        }
+      }
+    },
+    "ManagerType": {
+      "type": "string",
+      "enum": [
+        "Employee",
+        "Foreigner",
+        "Legal"
+      ]
+    },
+    "OkvedContent": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "Значение одной строкой",
+          "type": "string"
+        },
+        "idx": {
+          "description": "Индекс (раздел + код)",
+          "type": "string"
+        },
+        "section": {
+          "description": "Код раздела",
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "OkvedQuery": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DaDataRequest"
+        },
+        {
+          "type": "object",
+          "required": [
+            "query",
+            "queryType"
+          ],
+          "properties": {
+            "query": {
+              "type": "string"
+            },
+            "queryType": {
+              "$ref": "#/definitions/QueryType"
+            },
+            "filters": {
+              "$ref": "#/definitions/OkvedQueryFilter"
+            }
+          }
+        }
+      ]
+    },
+    "OkvedQueryFilter": {
+      "type": "object",
+      "properties": {
+        "section": {
+          "description": "Код раздела",
+          "type": "string"
+        }
+      }
+    },
+    "OkvedResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DaDataResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "suggestions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OkvedContent"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Opf": {
+      "type": "object",
+      "description": "Организационно-правовая форма",
+      "properties": {
+        "code": {
+          "description": "Код ОКОПФ",
+          "type": "string"
+        },
+        "fullName": {
+          "description": "Полное название ОПФ",
+          "type": "string"
+        },
+        "shortName": {
+          "description": "Краткое навание ОПФ",
+          "type": "string"
+        },
+        "type": {
+          "description": "версия справочника ОКОПФ (99, 2012 или 2014)",
+          "type": "string"
+        }
+      }
+    },
+    "OrgName": {
+      "type": "object",
+      "description": "Наименование организации",
+      "properties": {
+        "fullName": {
+          "description": "Полное наименование",
+          "type": "string"
+        },
+        "fullWithOpf": {
+          "description": "Полное наименование с ОПФ",
+          "type": "string"
+        },
+        "latin": {
+          "description": "Наименование на латинице",
+          "type": "string"
+        },
+        "shortName": {
+          "description": "Краткое наименование",
+          "type": "string"
+        },
+        "shortWithOpf": {
+          "description": "Краткое наименование с ОПФ",
+          "type": "string"
+        }
+      }
+    },
+    "OrgStatus": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Liquidating",
+        "Liquidated",
+        "Reorganizing"
+      ]
+    },
+    "OrgType": {
+      "type": "string",
+      "enum": [
+        "Legal",
+        "Individual"
+      ]
+    },
+    "PartyAuthorities": {
+      "type": "object",
+      "description": "Сведения о налоговой, ПФР и ФСС",
+      "properties": {
+        "ftsRegistration": {
+          "description": "ИФНС регистрации",
+          "$ref": "#/definitions/Authorities"
+        },
+        "ftsReport": {
+          "description": "ИФНС отчетности",
+          "$ref": "#/definitions/Authorities"
+        },
+        "pf": {
+          "description": "Отделение Пенсионного фонда",
+          "$ref": "#/definitions/Authorities"
+        },
+        "sif": {
+          "description": "Отделение Фонда соц. страхования",
+          "$ref": "#/definitions/Authorities"
+        }
+      }
+    },
+    "PartyCapital": {
+      "type": "object",
+      "description": "Уставной капитал компании",
+      "properties": {
+        "type": {
+          "description": "Тип капитала",
+          "type": "string"
+        },
+        "value": {
+          "description": "Размер капитала",
+          "type": "string"
+        }
+      }
+    },
+    "PartyContent": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "Наименование компании одной строкой",
+          "type": "string"
+        },
+        "unrestrictedValue": {
+          "description": "Наименование компании одной строкой (полное)",
+          "type": "string"
+        },
+        "kpp": {
+          "description": "КПП",
+          "type": "string"
+        },
+        "management": {
+          "$ref": "#/definitions/Management"
+        },
+        "branchType": {
+          "$ref": "#/definitions/BranchType"
+        },
+        "branchCount": {
+          "description": "Кол-во филиалов",
+          "type": "integer"
+        },
+        "hid": {
+          "$ref": "#/definitions/DaDataHID"
+        },
+        "state": {
+          "$ref": "#/definitions/DaDataState"
+        },
+        "opf": {
+          "$ref": "#/definitions/Opf"
+        },
+        "name": {
+          "$ref": "#/definitions/OrgName"
+        },
+        "inn": {
+          "type": "string"
+        },
+        "ogrn": {
+          "description": "ОГРН",
+          "type": "string"
+        },
+        "ogrnDate": {
+          "description": "Дата выдачи ОГРН",
+          "type": "string"
+        },
+        "orgType": {
+          "$ref": "#/definitions/OrgType"
+        },
+        "okpo": {
+          "description": "Код ОКПО",
+          "type": "string"
+        },
+        "okved": {
+          "description": "Код ОКВЭД",
+          "type": "string"
+        },
+        "okvedType": {
+          "description": "Версия справочника ОКВЭД (2001 или 2014)",
+          "type": "string"
+        },
+        "address": {
+          "description": "Адрес",
+          "$ref": "#/definitions/DaDataAddress"
+        },
+        "okveds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartyOkved"
+          }
+        },
+        "authorities": {
+          "$ref": "#/definitions/PartyAuthorities"
+        },
+        "citizenship": {
+          "$ref": "#/definitions/CitizenshipIP"
+        },
+        "founders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Founder"
+          }
+        },
+        "managers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Manager"
+          }
+        },
+        "capital": {
+          "$ref": "#/definitions/PartyCapital"
+        },
+        "documents": {
+          "$ref": "#/definitions/PartyDocuments"
+        },
+        "licenses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DaDataLicense"
+          }
+        }
+      }
+    },
+    "PartyDocuments": {
+      "type": "object",
+      "description": "Документы",
+      "properties": {
+        "ftsRegistration": {
+          "description": "Свидетельство о регистрации в налоговой",
+          "$ref": "#/definitions/IFNCRegistration"
+        },
+        "pfRegistration": {
+          "description": "Свидетельство о регистрации в пенсионном фонде",
+          "$ref": "#/definitions/IFNCRegistration"
+        },
+        "sifRegistration": {
+          "description": "Свидетельсво о регистрации в Фонде страхования",
+          "$ref": "#/definitions/IFNCRegistration"
+        }
+      }
+    },
+    "PartyOkved": {
+      "type": "object",
+      "description": "Коды ОКВЭД дополнительных видов деятельности",
+      "properties": {
+        "main": {
+          "description": "Основной или нет",
+          "type": "boolean"
+        },
+        "type": {
+          "description": "Версия справочника ОКВЭД",
+          "type": "string"
+        },
+        "code": {
+          "description": "Код по справочнику",
+          "type": "string"
+        },
+        "name": {
+          "description": "Наименование по справочнику",
+          "type": "string"
+        }
+      }
+    },
+    "PartyQuery": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DaDataRequest"
+        },
+        {
+          "type": "object",
+          "required": [
+            "query"
+          ],
+          "properties": {
+            "query": {
+              "type": "string"
+            },
+            "count": {
+              "type": "integer"
+            },
+            "status": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OrgStatus"
+              }
+            },
+            "type": {
+              "$ref": "#/definitions/OrgType"
+            },
+            "locations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LocationFilter"
+              }
+            },
+            "locationsBoost": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LocationBoostFilter"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "PartyResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DaDataResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "suggestions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PartyContent"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Payment": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Платежное наименование",
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "shortName": {
+          "description": "Краткое наименование",
+          "type": "string"
+        }
+      }
+    },
+    "QueryType": {
+      "type": "string",
+      "enum": [
+        "FullTextSearch",
+        "ByIdentifire"
+      ]
+    },
+    "GeneralError": {
+      "type": "object",
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Activity": {
+      "type": "object",
+      "description": "Вид деятельности",
+      "properties": {
+        "principalActivity": {
+          "$ref": "#/definitions/PrincipalActivity"
+        },
+        "complementaryActivities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ComplementaryActivity"
+          }
+        },
+        "okvedVersion": {
+          "type": "string"
+        }
+      }
+    },
+    "Branch": {
+      "type": "object",
+      "description": "Филиалы и представительства",
+      "properties": {
+        "name": {
+          "description": "Наименование филиала или представительства",
+          "type": "string"
+        },
+        "addressRf": {
+          "$ref": "#/definitions/ParsedAddressRF"
+        },
+        "foreignAddress": {
+          "$ref": "#/definitions/ForeignAddress"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "BriefReport": {
+      "type": "object",
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "summary": {
+          "$ref": "#/definitions/BriefReportSummary"
+        }
+      }
+    },
+    "BriefReportSummary": {
+      "type": "object",
+      "properties": {
+        "redStatements": {
+          "description": "Наличие информации, помеченной красным цветом",
+          "type": "boolean"
+        },
+        "yellowStatements": {
+          "description": "Наличие информации, помеченной красным желтым",
+          "type": "boolean"
+        },
+        "greenStatements": {
+          "description": "Наличие информации, помеченной красным зеленым",
+          "type": "boolean"
+        }
+      }
+    },
+    "Certificate": {
+      "type": "object",
+      "description": "Свидетельства, подтверждающие факт внесения записи",
+      "properties": {
+        "serialNumber": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "ComplementaryActivity": {
+      "type": "object",
+      "description": "Дополнительный вид деятельности",
+      "properties": {
+        "code": {
+          "description": "Код вида деятельности",
+          "type": "string"
+        },
+        "text": {
+          "description": "Название вида деятельности",
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "ContactPhones": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "description": "Кол-во найденных контактных телефонов",
+          "type": "integer",
+          "format": "int64"
+        },
+        "phones": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "EgrDetailsContractor": {
+      "type": "object",
+      "discriminator": "egrDetailContractorType",
+      "required": [
+        "egrDetailContractorType"
+      ],
+      "properties": {
+        "egrDetailContractorType": {
+          "type": "string"
+        }
+      }
+    },
+    "EgrDetailsHistory": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "shareHoldersFl": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ShareHolderFl"
+          }
+        },
+        "shareHoldersUl": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ShareHolderUl"
+          }
+        },
+        "shareholdersOther": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ShareHolderOther"
+          }
+        },
+        "statedCapitals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StatedCapital"
+          }
+        },
+        "foundersFl": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FounderFl"
+          }
+        },
+        "foundersUl": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FounderUl"
+          }
+        },
+        "foundersForeign": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FounderForeign"
+          }
+        }
+      }
+    },
+    "EgrDetailsIndividualEntity": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/EgrDetailsContractor"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "okpo": {
+              "type": "string"
+            },
+            "pfrRegNumber": {
+              "type": "string"
+            },
+            "fssRegNumber": {
+              "type": "string"
+            },
+            "fomsRegNumber": {
+              "type": "string"
+            },
+            "okato": {
+              "type": "string"
+            },
+            "shortenedAddress": {
+              "$ref": "#/definitions/ShortenedAddress"
+            },
+            "activities": {
+              "$ref": "#/definitions/Activity"
+            },
+            "regInfo": {
+              "$ref": "#/definitions/RegInfo"
+            },
+            "nalogRegBody": {
+              "$ref": "#/definitions/NalogRegBody"
+            },
+            "regBody": {
+              "$ref": "#/definitions/RegBody"
+            },
+            "egrRecords": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EgrRecord"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "EgrDetailsLegalEntity": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/EgrDetailsContractor"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "okpo": {
+              "type": "string"
+            },
+            "pfrRegNumber": {
+              "type": "string"
+            },
+            "fssRegNumber": {
+              "type": "string"
+            },
+            "fomsRegNumber": {
+              "type": "string"
+            },
+            "activities": {
+              "$ref": "#/definitions/Activity"
+            },
+            "regInfo": {
+              "$ref": "#/definitions/RegInfo"
+            },
+            "nalogRegBody": {
+              "$ref": "#/definitions/NalogRegBody"
+            },
+            "regBody": {
+              "$ref": "#/definitions/RegBody"
+            },
+            "shareHolders": {
+              "$ref": "#/definitions/ShareHolders"
+            },
+            "statedCapital": {
+              "$ref": "#/definitions/StatedCapital"
+            },
+            "foundersFl": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FounderFl"
+              }
+            },
+            "foundersUl": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FounderUl"
+              }
+            },
+            "foundersForeign": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FounderForeign"
+              }
+            },
+            "predecessor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Predecessor"
+              }
+            },
+            "successor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Successor"
+              }
+            },
+            "egrRecords": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EgrRecord"
+              }
+            },
+            "history": {
+              "$ref": "#/definitions/EgrDetailsHistory"
+            }
+          }
+        }
+      ]
+    },
+    "EgrDetailsQuery": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/KonturFocusRequest"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "inn": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "ogrn": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "EgrDetailsResponse": {
+      "type": "object",
+      "required": [
+        "inn",
+        "ogrn",
+        "focusHref",
+        "contractor"
+      ],
+      "properties": {
+        "inn": {
+          "type": "string"
+        },
+        "ogrn": {
+          "type": "string"
+        },
+        "focusHref": {
+          "$ref": "#/definitions/KonturFocusUrl"
+        },
+        "contractor": {
+          "$ref": "#/definitions/EgrDetailsContractor"
+        }
+      }
+    },
+    "EgrDetailsResponses": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/KonturFocusResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "responses": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EgrDetailsResponse"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "EgrRecord": {
+      "type": "object",
+      "description": "Запись в ЕГРЮЛ",
+      "properties": {
+        "grn": {
+          "description": "ГРН записи",
+          "type": "string"
+        },
+        "date": {
+          "description": "Дата внесения записи",
+          "type": "string"
+        },
+        "name": {
+          "description": "Причина внесения записи",
+          "type": "string"
+        },
+        "invalid": {
+          "description": "Признак недействительности записи",
+          "type": "boolean"
+        },
+        "regName": {
+          "description": "Имя регистрирующего органа, который внес запись",
+          "type": "string"
+        },
+        "regCode": {
+          "description": "Код регистрирующего органа, который внес запись",
+          "type": "string"
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RecordDocument"
+          }
+        },
+        "certificates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Certificate"
+          }
+        }
+      }
+    },
+    "ForeignAddress": {
+      "type": "object",
+      "description": "Адрес вне РФ",
+      "properties": {
+        "countryName": {
+          "description": "Наименование страы",
+          "type": "string"
+        },
+        "address": {
+          "description": "Строка, содержащая адрес",
+          "type": "string"
+        }
+      }
+    },
+    "FounderFl": {
+      "type": "object",
+      "description": "Учредитель физлица",
+      "properties": {
+        "fio": {
+          "type": "string"
+        },
+        "innfl": {
+          "type": "string"
+        },
+        "share": {
+          "$ref": "#/definitions/Share"
+        },
+        "date": {
+          "type": "string"
+        },
+        "firstDate": {
+          "type": "string"
+        }
+      }
+    },
+    "FounderForeign": {
+      "type": "object",
+      "description": "Учредители - иностранные компании",
+      "properties": {
+        "fullName": {
+          "description": "Полное наименование юридического лица",
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "share": {
+          "$ref": "#/definitions/Share"
+        },
+        "date": {
+          "description": "Дата последнего внесения изменений",
+          "type": "string"
+        },
+        "firstDate": {
+          "description": "Дата первого внесения сведений",
+          "type": "string"
+        }
+      }
+    },
+    "FounderUl": {
+      "type": "object",
+      "description": "Учредитель юрлица",
+      "properties": {
+        "ogrn": {
+          "type": "string"
+        },
+        "inn": {
+          "type": "string"
+        },
+        "fullName": {
+          "description": "Полное наименование юридического лица",
+          "type": "string"
+        },
+        "share": {
+          "$ref": "#/definitions/Share"
+        },
+        "date": {
+          "type": "string"
+        },
+        "firstDate": {
+          "type": "string"
+        }
+      }
+    },
+    "Head": {
+      "type": "object",
+      "description": "Лицо имеющее право подписи без доверенности (руководитель)",
+      "properties": {
+        "fio": {
+          "type": "string"
+        },
+        "innfl": {
+          "description": "ИННФЛ",
+          "type": "string"
+        },
+        "position": {
+          "description": "Должность",
+          "type": "string"
+        },
+        "date": {
+          "description": "Дата последнего внесения изменений",
+          "type": "string"
+        },
+        "firstDate": {
+          "description": "Дата первого внесения сведений",
+          "type": "string"
+        }
+      }
+    },
+    "KonturFocusLicense": {
+      "type": "object",
+      "properties": {
+        "officialNum": {
+          "description": "Номер лицензии",
+          "type": "string"
+        },
+        "issuerNamer": {
+          "description": "Название органа, выдавшего лицензию",
+          "type": "string"
+        },
+        "date": {
+          "description": "Дата лицензии",
+          "type": "string"
+        },
+        "dateStart": {
+          "description": "Дата начала действия лицензии",
+          "type": "string"
+        },
+        "dateEnd": {
+          "description": "Дата окончания действия лицензии",
+          "type": "string"
+        },
+        "statusDescription": {
+          "description": "Строковое описание статуса",
+          "type": "string"
+        },
+        "activity": {
+          "description": "Описание вида деятельности",
+          "type": "string"
+        },
+        "services": {
+          "description": "Описание видов работ/услуг",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "addresses": {
+          "description": "Места действия лицензии (массив неформализированных строк)",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "KonturFocusParams": {
+      "type": "object",
+      "required": [
+        "request"
+      ],
+      "properties": {
+        "request": {
+          "$ref": "#/definitions/KonturFocusRequest"
+        }
+      }
+    },
+    "KonturFocusRequest": {
+      "type": "object",
+      "description": "Тело запроса в KonturFocus",
+      "discriminator": "konturFocusRequestType",
+      "required": [
+        "konturFocusRequestType"
+      ],
+      "properties": {
+        "konturFocusRequestType": {
+          "type": "string",
+          "enum": [
+            "Req",
+            "EgrDetails",
+            "Licences"
+          ]
+        }
+      }
+    },
+    "KonturFocusResponse": {
+      "type": "object",
+      "discriminator": "konturFocusResponseType",
+      "required": [
+        "konturFocusResponseType"
+      ],
+      "properties": {
+        "konturFocusResponseType": {
+          "type": "string"
+        }
+      }
+    },
+    "KonturFocusUrl": {
+      "type": "string",
+      "description": "Ссылка на карточку юридического лица в Контур.Фокусе"
+    },
+    "LegalAddress": {
+      "type": "object",
+      "description": "Юридический адрес",
+      "properties": {
+        "addressRf": {
+          "$ref": "#/definitions/ParsedAddressRF"
+        },
+        "date": {
+          "type": "string"
+        },
+        "firstDate": {
+          "description": "Дата первого внесения сведений",
+          "type": "string"
+        }
+      }
+    },
+    "LegalEntityStatusDetail": {
+      "type": "object",
+      "description": "Статус организации",
+      "properties": {
+        "status": {
+          "description": "Неформализованное описание статуса",
+          "type": "string"
+        },
+        "reorganizing": {
+          "description": "В процессе реорганизации (может прекратить деятельность в результате реорганизации)",
+          "type": "boolean"
+        },
+        "dissolving": {
+          "description": "В стадии ликвидации (либо пранируется исключение из ЕГРЮЛ)",
+          "type": "boolean"
+        },
+        "dissolved": {
+          "description": "Недействующее",
+          "type": "boolean"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "LegalName": {
+      "type": "object",
+      "description": "Наименование юридического лица",
+      "properties": {
+        "shortName": {
+          "description": "Краткое наименование организации",
+          "type": "string"
+        },
+        "fullName": {
+          "description": "Полное наименование организации",
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "LicencesQuery": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/KonturFocusRequest"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "inn": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "ogrn": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "LicencesResponse": {
+      "type": "object",
+      "required": [
+        "inn",
+        "ogrn",
+        "focusHref",
+        "licenses"
+      ],
+      "properties": {
+        "inn": {
+          "type": "string"
+        },
+        "ogrn": {
+          "type": "string"
+        },
+        "focusHref": {
+          "$ref": "#/definitions/KonturFocusUrl"
+        },
+        "licenses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/KonturFocusLicense"
+          }
+        }
+      }
+    },
+    "LicencesResponses": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/KonturFocusResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "responses": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LicencesResponse"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ManagementCompany": {
+      "type": "object",
+      "description": "Управляющая компания",
+      "properties": {
+        "name": {
+          "description": "Наименование управляющей организации",
+          "type": "string"
+        },
+        "inn": {
+          "description": "ИНН управляющей организации (если указан)",
+          "type": "string"
+        },
+        "ogrn": {
+          "description": "ОГРН управляющей организации (если указан)",
+          "type": "string"
+        },
+        "date": {
+          "description": "Дата последнего внесения изменений",
+          "type": "string"
+        },
+        "firstDate": {
+          "description": "Дата первого внесения сведений",
+          "type": "string"
+        }
+      }
+    },
+    "NalogRegBody": {
+      "type": "object",
+      "description": "Сведения о постановке на учет в налоговом органе",
+      "properties": {
+        "nalogCode": {
+          "description": "Код налогового органа",
+          "type": "string"
+        },
+        "nalogName": {
+          "description": "Наименование налогового органа",
+          "type": "string"
+        },
+        "nalogRegDate": {
+          "description": "Дата поставки на учет",
+          "type": "string"
+        },
+        "kpp": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "ParsedAddressRF": {
+      "description": "Разобранный на составляющие адрес в РФ",
+      "properties": {
+        "zipCode": {
+          "description": "Индекс",
+          "type": "string"
+        },
+        "kladrCode": {
+          "description": "Код КЛАДР",
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "Код региона",
+          "type": "string"
+        },
+        "regionName": {
+          "$ref": "#/definitions/Toponim"
+        },
+        "district": {
+          "$ref": "#/definitions/Toponim"
+        },
+        "city": {
+          "$ref": "#/definitions/Toponim"
+        },
+        "settlement": {
+          "$ref": "#/definitions/Toponim"
+        },
+        "street": {
+          "$ref": "#/definitions/Toponim"
+        },
+        "house": {
+          "$ref": "#/definitions/Toponim"
+        },
+        "bulk": {
+          "$ref": "#/definitions/Toponim"
+        },
+        "flat": {
+          "$ref": "#/definitions/Toponim"
+        },
+        "houseRaw": {
+          "description": "Полное значение поля \"Дом\" из ЕГРЮЛ",
+          "type": "string"
+        },
+        "bulkRaw": {
+          "description": "Полное значение поля \"Корпус\" из ЕГРЮЛ",
+          "type": "string"
+        },
+        "flatRaw": {
+          "description": "Полное значение поля \"Квартира\" из ЕГРЮЛ",
+          "type": "string"
+        }
+      }
+    },
+    "Predecessor": {
+      "type": "object",
+      "description": "Предшественники",
+      "properties": {
+        "name": {
+          "description": "Наименование огранизации",
+          "type": "string"
+        },
+        "inn": {
+          "type": "string"
+        },
+        "ogrn": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "PrincipalActivity": {
+      "type": "object",
+      "description": "Основной вид деятельности",
+      "properties": {
+        "code": {
+          "description": "Код вида деятельности",
+          "type": "string"
+        },
+        "text": {
+          "description": "Название вида деятельности",
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "PrivateEntityStatusDetail": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "Неформализованное описание статуса",
+          "type": "string"
+        },
+        "dissolved": {
+          "description": "Недействующий",
+          "type": "boolean"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "RecordDocument": {
+      "type": "object",
+      "description": "Документы, представленные при внесении записи",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "RegBody": {
+      "type": "object",
+      "description": "Сведения регистрирующего органа",
+      "properties": {
+        "nalogCode": {
+          "description": "Код налогового органа",
+          "type": "string"
+        },
+        "nalogName": {
+          "description": "Наименование налогового органа",
+          "type": "string"
+        },
+        "nalogRegDate": {
+          "description": "Дата поставки на учет",
+          "type": "string"
+        },
+        "kpp": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "RegInfo": {
+      "type": "object",
+      "description": "Сведения о регистрации",
+      "properties": {
+        "ogrnDate": {
+          "description": "Дата присвоения ОГРН",
+          "type": "string"
+        },
+        "regName": {
+          "description": "Наименование органа, зарегистрировавшего юридическое лицо",
+          "type": "string"
+        }
+      }
+    },
+    "ReqContractor": {
+      "type": "object",
+      "discriminator": "reqContractorType",
+      "required": [
+        "reqContractorType"
+      ],
+      "properties": {
+        "reqContractorType": {
+          "type": "string"
+        }
+      }
+    },
+    "ReqHistory": {
+      "type": "object",
+      "properties": {
+        "kpps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReqKppHistory"
+          }
+        },
+        "legalNames": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LegalName"
+          }
+        },
+        "legalAddresses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LegalAddress"
+          }
+        },
+        "branches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Branch"
+          }
+        },
+        "managementCompanies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ManagementCompany"
+          }
+        },
+        "heads": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Head"
+          }
+        }
+      }
+    },
+    "ReqIndividualEntity": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ReqContractor"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "fio": {
+              "type": "string"
+            },
+            "okpo": {
+              "type": "string"
+            },
+            "okato": {
+              "type": "string"
+            },
+            "okfs": {
+              "type": "string"
+            },
+            "okogu": {
+              "type": "string"
+            },
+            "okopf": {
+              "type": "string"
+            },
+            "opf": {
+              "description": "Наименование организационно-правовой формы",
+              "type": "string"
+            },
+            "oktmo": {
+              "type": "string"
+            },
+            "registrationDate": {
+              "description": "Дата образования",
+              "type": "string"
+            },
+            "dissolutionDate": {
+              "description": "Дата прекращения деятельности",
+              "type": "string"
+            },
+            "statusDetail": {
+              "$ref": "#/definitions/PrivateEntityStatusDetail"
+            }
+          }
+        }
+      ]
+    },
+    "ReqKppHistory": {
+      "type": "object",
+      "properties": {
+        "kpp": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "ReqLegalEntity": {
+      "type": "object",
+      "description": "Информация о юридическом лице",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ReqContractor"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kpp": {
+              "type": "string"
+            },
+            "okpo": {
+              "type": "string"
+            },
+            "okato": {
+              "type": "string"
+            },
+            "okfs": {
+              "type": "string"
+            },
+            "oktmo": {
+              "type": "string"
+            },
+            "okogu": {
+              "type": "string"
+            },
+            "okopf": {
+              "type": "string"
+            },
+            "opf": {
+              "description": "Наименование огранизационной правовой формы",
+              "type": "string"
+            },
+            "legalName": {
+              "$ref": "#/definitions/LegalName"
+            },
+            "legalAddress": {
+              "$ref": "#/definitions/LegalAddress"
+            },
+            "branches": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Branch"
+              }
+            },
+            "status": {
+              "$ref": "#/definitions/LegalEntityStatusDetail"
+            },
+            "registrationDate": {
+              "description": "Дата образования",
+              "type": "string"
+            },
+            "dissolutionDate": {
+              "description": "Дата прекращения деятельности в результате ликвидации, реорганизации или других событий",
+              "type": "string"
+            },
+            "heads": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Head"
+              }
+            },
+            "managementCompanies": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ManagementCompany"
+              }
+            },
+            "history": {
+              "$ref": "#/definitions/ReqHistory"
+            }
+          }
+        }
+      ]
+    },
+    "ReqQuery": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/KonturFocusRequest"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "inn": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "ogrn": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ReqResponse": {
+      "type": "object",
+      "required": [
+        "inn",
+        "ogrn",
+        "focusHref",
+        "contractor",
+        "briefReport",
+        "contactPhones"
+      ],
+      "properties": {
+        "inn": {
+          "type": "string"
+        },
+        "ogrn": {
+          "type": "string"
+        },
+        "focusHref": {
+          "$ref": "#/definitions/KonturFocusUrl"
+        },
+        "contractor": {
+          "$ref": "#/definitions/ReqContractor"
+        },
+        "briefReport": {
+          "$ref": "#/definitions/BriefReport"
+        },
+        "contactPhones": {
+          "$ref": "#/definitions/ContactPhones"
+        }
+      }
+    },
+    "ReqResponses": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/KonturFocusResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "responses": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ReqResponse"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Share": {
+      "type": "object",
+      "description": "Доля в уставном капитале",
+      "properties": {
+        "sum": {
+          "description": "Сумма в рублях",
+          "type": "integer",
+          "format": "int64"
+        },
+        "percentagePlain": {
+          "description": "Размер доли в процентах",
+          "type": "integer"
+        },
+        "percentageNominator": {
+          "description": "Размер доли в виде простой дроби (числитель)",
+          "type": "integer"
+        },
+        "percentageDenominator": {
+          "description": "Дата первого внесения сведений",
+          "type": "integer"
+        }
+      }
+    },
+    "ShareHolderFl": {
+      "type": "object",
+      "description": "Акционеры - физлица",
+      "properties": {
+        "fio": {
+          "type": "string"
+        },
+        "address": {
+          "description": "Местожительства физлица",
+          "type": "string"
+        },
+        "votingSharesPercent": {
+          "description": "Доля обыкновенных акций в процентах",
+          "type": "integer"
+        },
+        "capitalSharesPercent": {
+          "description": "Доля участия в уставном каптале в процентах",
+          "type": "integer"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "ShareHolderOther": {
+      "type": "object",
+      "description": "Акционеры - юрлица",
+      "properties": {
+        "fullName": {
+          "description": "Полное наименование лица",
+          "type": "string"
+        },
+        "address": {
+          "description": "Местонахождение юрлица или местожительсво физлица",
+          "type": "string"
+        },
+        "votingSharesPercent": {
+          "description": "Доля обыкновенных акций в процентах",
+          "type": "integer"
+        },
+        "capitalSharesPercent": {
+          "description": "Доля участия в уставном каптале в процентах",
+          "type": "integer"
+        },
+        "date": {
+          "description": "Дата последнего изменения в долях",
+          "type": "string"
+        }
+      }
+    },
+    "ShareHolders": {
+      "type": "object",
+      "description": "Акционеры, являющиеся аффилированными лицами",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "shareHoldersFl": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ShareHolderFl"
+          }
+        },
+        "shareHoldersUl": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ShareHolderUl"
+          }
+        },
+        "shareHoldersOther": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ShareHolderOther"
+          }
+        }
+      }
+    },
+    "ShareHolderUl": {
+      "type": "object",
+      "description": "Акционеры - юрлица",
+      "properties": {
+        "ogrn": {
+          "type": "string"
+        },
+        "inn": {
+          "type": "string"
+        },
+        "fullName": {
+          "description": "Полное наименование юридического лица",
+          "type": "string"
+        },
+        "address": {
+          "description": "Местонахождение юрлица",
+          "type": "string"
+        },
+        "votingSharesPercent": {
+          "description": "Доля обыкновенных акций в процентах",
+          "type": "integer"
+        },
+        "capitalSharesPercent": {
+          "description": "Доля участия в уставном каптале в процентах",
+          "type": "integer"
+        },
+        "date": {
+          "description": "Дата последнего изменения в долях",
+          "type": "string"
+        }
+      }
+    },
+    "ShortenedAddress": {
+      "type": "object",
+      "description": "Информация о местонахождении ИП",
+      "required": [
+        "regionCode"
+      ],
+      "properties": {
+        "regionCode": {
+          "type": "string"
+        },
+        "regionName": {
+          "$ref": "#/definitions/Toponim"
+        },
+        "district": {
+          "$ref": "#/definitions/Toponim"
+        },
+        "city": {
+          "$ref": "#/definitions/Toponim"
+        },
+        "settlement": {
+          "$ref": "#/definitions/Toponim"
+        }
+      }
+    },
+    "StatedCapital": {
+      "type": "object",
+      "description": "Уставный капитал",
+      "properties": {
+        "sum": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "Successor": {
+      "type": "object",
+      "description": "Предшественники",
+      "properties": {
+        "name": {
+          "description": "Наименование огранизации",
+          "type": "string"
+        },
+        "inn": {
+          "type": "string"
+        },
+        "ogrn": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "Toponim": {
+      "type": "object",
+      "properties": {
+        "topoShortName": {
+          "type": "string"
+        },
+        "topoFullName": {
+          "type": "string"
+        },
+        "topoValue": {
+          "type": "string"
+        }
+      }
+    },
+    "SubError": {
+      "description": "Детализация описания ошибки\n",
+      "type": "object",
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "code": {
+          "description": "Детализация кода ошибки",
+          "type": "string"
+        },
+        "subError": {
+          "$ref": "#/definitions/SubError"
+        }
+      }
+    }
+  }
+}
