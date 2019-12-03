@@ -1510,9 +1510,9 @@ definitions:
       konturFocusRequestType:
         type: string
         enum:
-          - Req
-          - EgrDetails
-          - Licences
+          - ReqQuery
+          - EgrDetailsQuery
+          - LicencesQuery
   KonturFocusResponse:
     type: object
     discriminator: konturFocusResponseType

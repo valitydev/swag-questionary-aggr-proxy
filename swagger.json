@@ -2232,9 +2232,9 @@
         "konturFocusRequestType": {
           "type": "string",
           "enum": [
-            "Req",
-            "EgrDetails",
-            "Licences"
+            "ReqQuery",
+            "EgrDetailsQuery",
+            "LicencesQuery"
           ]
         }
       }
