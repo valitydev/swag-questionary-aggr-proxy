@@ -1,0 +1,10 @@
+type: object
+properties:
+  fullName:
+    type: string
+  country:
+    type: string
+  share:
+    type: number
+  isAccurate:
+    type: boolean

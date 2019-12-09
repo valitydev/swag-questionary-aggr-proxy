@@ -1,0 +1,18 @@
+type: object
+properties:
+  beneficialOwnerFl:
+    type: array
+    items:
+      $ref: '#/definitions/BeneficialOwnerFl'
+  beneficialOwnersUl:
+    type: array
+    items:
+      $ref: '#/definitions/BeneficialOwnerUl'
+  beneficialOwnersForeign:
+    type: array
+    items:
+      $ref: '#/definitions/BeneficialOwnerForeign'
+  beneficialOwnersOther:
+    type: array
+    items:
+      $ref: '#/definitions/BeneficialOwnerOther'

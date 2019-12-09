@@ -10,3 +10,4 @@ properties:
       - ReqQuery
       - EgrDetailsQuery
       - LicencesQuery
+      - BeneficialOwnerQuery

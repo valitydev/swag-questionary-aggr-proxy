@@ -1,0 +1,8 @@
+type: object
+properties:
+  fullname:
+    type: string
+  share:
+    type: number
+  isAccurate:
+    type: boolean

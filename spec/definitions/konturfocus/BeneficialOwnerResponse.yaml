@@ -1,0 +1,19 @@
+type: object
+required:
+  - inn
+  - ogrn
+  - focusHref
+  - contractor
+properties:
+  inn:
+    type: string
+  ogrn:
+    type: string
+  focusHref:
+    $ref: '#/definitions/KonturFocusUrl'
+  statedCapital:
+    $ref: '#/definitions/StatedCapital'
+  beneficialOwners:
+    $ref: '#/definitions/BeneficialOwners'
+  historicalBeneficialOwners:
+    $ref: '#/definitions/BeneficialOwners'

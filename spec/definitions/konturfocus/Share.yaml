@@ -7,7 +7,7 @@ properties:
     format: int64
   percentagePlain:
     description: Размер доли в процентах
-    type: integer
+    type: number
   percentageNominator:
     description: Размер доли в виде простой дроби (числитель)
     type: integer

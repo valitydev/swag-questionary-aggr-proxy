@@ -1,0 +1,12 @@
+type: object
+properties:
+  ogrn:
+    type: string
+  inn:
+    type: string
+  fullName:
+    type: string
+  share:
+    type: number
+  isAccurate:
+    type: boolean

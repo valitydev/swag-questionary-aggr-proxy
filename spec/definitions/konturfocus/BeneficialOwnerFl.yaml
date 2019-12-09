@@ -1,0 +1,10 @@
+type: object
+properties:
+  fio:
+    type: string
+  innfl:
+    type: string
+  share:
+    type: number
+  isAccurate:
+    type: boolean
