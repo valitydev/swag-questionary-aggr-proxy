@@ -8,9 +8,9 @@ properties:
     type: string
   votingSharesPercent:
     description: Доля обыкновенных акций в процентах
-    type: integer
+    type: number
   capitalSharesPercent:
-    description: Доля участия в уставном каптале в процентах
-    type: integer
+    description: Доля участия в уставном капитале в процентах
+    type: number
   date:
     type: string
