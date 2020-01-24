@@ -37,6 +37,10 @@ responses:
       $ref: '#/definitions/GeneralError'
   Unauthorized:
     description: Ошибка авторизации
+  GeneralError:
+    description: Неверные данные
+    schema:
+      $ref: '#/definitions/GeneralError'
 parameters:
   requestID:
     name: X-Request-ID
@@ -65,22 +69,7 @@ paths:
           schema:
             $ref: '#/definitions/DaDataResponse'
         '400':
-          description: Ошибочные данные
-          schema:
-            type: object
-            required:
-              - code
-              - message
-            properties:
-              code:
-                description: |
-                  [Код ошибки](#tag/Error-Codes)
-                type: string
-                enum:
-                  - daDataRequestException
-              message:
-                description: Человекочитаемое описание ошибки
-                type: string
+          $ref: '#/responses/GeneralError'
         '401':
           $ref: '#/responses/Unauthorized'
         '404':
@@ -103,22 +92,7 @@ paths:
           schema:
             $ref: '#/definitions/KonturFocusResponse'
         '400':
-          description: Ошибочные данные
-          schema:
-            type: object
-            required:
-              - code
-              - message
-            properties:
-              code:
-                description: |
-                  [Код ошибки](#tag/Error-Codes)
-                type: string
-                enum:
-                  - daDataRequestException
-              message:
-                description: Человекочитаемое описание ошибки
-                type: string
+          $ref: '#/responses/GeneralError'
         '401':
           $ref: '#/responses/Unauthorized'
         '404':
@@ -1127,6 +1101,114 @@ definitions:
           $ref: '#/definitions/ComplementaryActivity'
       okvedVersion:
         type: string
+  BeneficialOwnerFl:
+    type: object
+    properties:
+      fio:
+        type: string
+      innfl:
+        type: string
+      share:
+        type: number
+      isAccurate:
+        type: boolean
+  BeneficialOwnerForeign:
+    type: object
+    properties:
+      fullName:
+        type: string
+      country:
+        type: string
+      share:
+        type: number
+      isAccurate:
+        type: boolean
+  BeneficialOwnerOther:
+    type: object
+    properties:
+      fullname:
+        type: string
+      share:
+        type: number
+      isAccurate:
+        type: boolean
+  BeneficialOwnerQuery:
+    type: object
+    allOf:
+      - $ref: '#/definitions/KonturFocusRequest'
+      - type: object
+        properties:
+          inn:
+            type: array
+            items:
+              type: string
+          ogrn:
+            type: array
+            items:
+              type: string
+  BeneficialOwnerResponse:
+    type: object
+    required:
+      - inn
+      - ogrn
+      - focusHref
+      - beneficialOwners
+      - historicalBeneficialOwners
+    properties:
+      inn:
+        type: string
+      ogrn:
+        type: string
+      focusHref:
+        $ref: '#/definitions/KonturFocusUrl'
+      statedCapital:
+        $ref: '#/definitions/StatedCapital'
+      beneficialOwners:
+        $ref: '#/definitions/BeneficialOwners'
+      historicalBeneficialOwners:
+        $ref: '#/definitions/BeneficialOwners'
+  BeneficialOwnerResponses:
+    type: object
+    allOf:
+      - $ref: '#/definitions/KonturFocusResponse'
+      - type: object
+        properties:
+          responses:
+            type: array
+            items:
+              $ref: '#/definitions/BeneficialOwnerResponse'
+  BeneficialOwners:
+    type: object
+    properties:
+      beneficialOwnerFl:
+        type: array
+        items:
+          $ref: '#/definitions/BeneficialOwnerFl'
+      beneficialOwnersUl:
+        type: array
+        items:
+          $ref: '#/definitions/BeneficialOwnerUl'
+      beneficialOwnersForeign:
+        type: array
+        items:
+          $ref: '#/definitions/BeneficialOwnerForeign'
+      beneficialOwnersOther:
+        type: array
+        items:
+          $ref: '#/definitions/BeneficialOwnerOther'
+  BeneficialOwnerUl:
+    type: object
+    properties:
+      ogrn:
+        type: string
+      inn:
+        type: string
+      fullName:
+        type: string
+      share:
+        type: number
+      isAccurate:
+        type: boolean
   Branch:
     type: object
     description: Филиалы и представительства
@@ -1513,6 +1595,7 @@ definitions:
           - ReqQuery
           - EgrDetailsQuery
           - LicencesQuery
+          - BeneficialOwnerQuery
   KonturFocusResponse:
     type: object
     discriminator: konturFocusResponseType
@@ -1930,7 +2013,7 @@ definitions:
         format: int64
       percentagePlain:
         description: Размер доли в процентах
-        type: integer
+        type: number
       percentageNominator:
         description: Размер доли в виде простой дроби (числитель)
         type: integer
@@ -1948,10 +2031,10 @@ definitions:
         type: string
       votingSharesPercent:
         description: Доля обыкновенных акций в процентах
-        type: integer
+        type: number
       capitalSharesPercent:
-        description: Доля участия в уставном каптале в процентах
-        type: integer
+        description: Доля участия в уставном капитале в процентах
+        type: number
       date:
         type: string
   ShareHolderOther:
@@ -1966,10 +2049,10 @@ definitions:
         type: string
       votingSharesPercent:
         description: Доля обыкновенных акций в процентах
-        type: integer
+        type: number
       capitalSharesPercent:
-        description: Доля участия в уставном каптале в процентах
-        type: integer
+        description: Доля участия в уставном капитале в процентах
+        type: number
       date:
         description: Дата последнего изменения в долях
         type: string
@@ -2007,10 +2090,10 @@ definitions:
         type: string
       votingSharesPercent:
         description: Доля обыкновенных акций в процентах
-        type: integer
+        type: number
       capitalSharesPercent:
-        description: Доля участия в уставном каптале в процентах
-        type: integer
+        description: Доля участия в уставном капитале в процентах
+        type: number
       date:
         description: Дата последнего изменения в долях
         type: string
