@@ -3,7 +3,8 @@ required:
   - inn
   - ogrn
   - focusHref
-  - contractor
+  - beneficialOwners
+  - historicalBeneficialOwners
 properties:
   inn:
     type: string

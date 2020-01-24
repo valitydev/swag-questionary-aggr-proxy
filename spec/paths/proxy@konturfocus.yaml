@@ -19,19 +19,4 @@ post:
     '401':
       $ref: '#/responses/Unauthorized'
     '400':
-      description: Ошибочные данные
-      schema:
-        type: object
-        required:
-          - code
-          - message
-        properties:
-          code:
-            description: |
-              [Код ошибки](#tag/Error-Codes)
-            type: string
-            enum:
-              - daDataRequestException
-          message:
-            description: Человекочитаемое описание ошибки
-            type: string
+      $ref: '#/responses/GeneralError'

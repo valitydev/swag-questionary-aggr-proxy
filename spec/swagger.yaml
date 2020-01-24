@@ -42,6 +42,10 @@ responses:
       $ref: '#/definitions/GeneralError'
   Unauthorized:
     description: Ошибка авторизации
+  GeneralError:
+    description: Неверные данные
+    schema:
+      $ref: '#/definitions/GeneralError'
 
 parameters:
   requestID:
