@@ -22,7 +22,7 @@
         <default.package>com.rbkmoney.swag.questionary_aggr_proxy</default.package>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-plugin-version>1.0.0</maven-plugin-version>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <slf4j-version>1.7.30</slf4j-version>
