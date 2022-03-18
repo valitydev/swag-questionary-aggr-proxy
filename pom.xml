@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.rbkmoney</groupId>
-        <artifactId>parent</artifactId>
-        <version>1.0.0</version>
+        <groupId>dev.vality</groupId>
+        <artifactId>library-parent-pom</artifactId>
+        <version>1.0.2</version>
     </parent>
 
     <artifactId>swag-questionary-aggr</artifactId>
@@ -19,7 +19,7 @@
     </description>
 
     <properties>
-        <default.package>com.rbkmoney.swag.questionary_aggr_proxy</default.package>
+        <default.package>dev.vality.swag.questionary_aggr_proxy</default.package>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <swagger-annotations-version>1.5.21</swagger-annotations-version>
         <jodatime-version>2.7</jodatime-version>
