@@ -30,4 +30,3 @@ properties:
     type: array
     items:
       $ref: '#/definitions/FounderForeign'
-

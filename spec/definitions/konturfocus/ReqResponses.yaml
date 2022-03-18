@@ -7,4 +7,3 @@ allOf:
         type: array
         items:
           $ref: '#/definitions/ReqResponse'
-

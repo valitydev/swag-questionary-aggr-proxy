@@ -11,4 +11,3 @@ allOf:
         type: array
         items:
           type: string
-
