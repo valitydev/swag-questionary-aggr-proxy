@@ -87,4 +87,3 @@ properties:
     type: array
     items:
       $ref: '#/definitions/AddressMetro'
-
