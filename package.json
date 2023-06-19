@@ -1,6 +1,6 @@
 {
   "name": "@vality/swag-questionary-aggr-proxy",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "build": "node ./scripts/build.js",
@@ -17,7 +17,7 @@
     "gulp": "4.0.2",
     "gulp-connect": "5.7.0",
     "gulp-util": "3.0.8",
-    "json-merge-patch": "0.2.3",
+    "json-merge-patch": "1.0.2",
     "portfinder": "1.0.28",
     "redoc-cli": "0.10.4",
     "shelljs": "0.8.5",
